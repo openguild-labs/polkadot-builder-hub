@@ -21,9 +21,11 @@ export default function Home() {
           consumer dApps.
         </p>
         <div className="flex flex-row gap-4 justify-center">
-          <Button className="hover:cursor-pointer">Explore ideas</Button>
-          <Button variant="secondary" className="hover:cursor-pointer">
-            Hackathon resources
+          <Button className="hover:cursor-pointer" asChild>
+            <Link href="/explore-ideas">Explore ideas</Link>
+          </Button>
+          <Button variant="secondary" className="hover:cursor-pointer" asChild>
+            <Link href="/hackathon-resources">Hackathon resources</Link>
           </Button>
         </div>
       </div>
