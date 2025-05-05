@@ -9,7 +9,7 @@ import {
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-4">
+    <main className="flex flex-col gap-4 p-4">
       {/* Hero Section */}
       <div className="flex flex-col gap-4 text-center items-center justify-center h-screen">
         <h1 className="text-4xl font-bold">Polkadot Builders Resources</h1>
@@ -28,7 +28,7 @@ export default function Home() {
         </div>
       </div>
       {/* Resources Section */}
-      <div className="flex flex-col gap-4 items-center justify-center h-[500px]">
+      <div className="flex flex-col gap-8 items-center justify-center h-[500px]">
         <h2 className="text-2xl font-bold">Welcome aboard, builders!</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-[200px]">
           <Link className="border-2 border-muted rounded-lg p-4" href="/grants">
@@ -39,12 +39,18 @@ export default function Home() {
             </div>
           </Link>
           <div className="grid grid-cols-1 gap-4">
-            <Link href="/past-hackathon-winners">
+            <Link
+              href="/past-hackathon-winners"
+              className="border-2 border-muted rounded-lg p-4"
+            >
               <div className="flex flex-col gap-4">
                 <h3 className="text-xl font-bold">Past Hackathon Winners</h3>
               </div>
             </Link>
-            <Link href="/join-communities">
+            <Link
+              href="/join-communities"
+              className="border-2 border-muted rounded-lg p-4"
+            >
               <div className="flex flex-col gap-4">
                 <h3 className="text-xl font-bold">
                   Join Communities to get support
