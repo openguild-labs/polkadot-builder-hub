@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <main className="flex flex-col gap-4 p-4">
       {/* Hero Section */}
-      <div className="flex flex-col gap-4 text-center items-center justify-center h-screen">
+      <div className="flex flex-col gap-4 text-center items-center justify-center h-[600px]">
         <h1 className="text-4xl font-bold">Polkadot Builders Resources</h1>
         <p className="text-lg text-muted-foreground">
           Aggregated by OpenGuild ♥️
