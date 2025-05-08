@@ -7,7 +7,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
-
+import FeaturedCategories from "@/components/featured-categories";
 
 export default function Home() {
   return (
@@ -74,6 +74,8 @@ export default function Home() {
           </div>
         </div>
       </div>
+      {/* Featured Categories Section */}
+      <FeaturedCategories />
       {/* FAQ Section */}
       <div className="flex flex-col gap-4 items-center justify-center h-[500px]">
         <h2 className="text-2xl font-bold">Frequently Asked Questions</h2>
