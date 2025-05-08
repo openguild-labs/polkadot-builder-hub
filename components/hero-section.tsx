@@ -13,7 +13,7 @@ export default function HeroSection() {
         consumer dApps.
       </p>
       <div className="flex flex-row gap-4 justify-center">
-        <Button className="hover:cursor-pointer" asChild>
+        <Button className="bg-primary hover:bg-[#FF2670] hover:text-white transition-all duration-200 ease-in-out" asChild>
           <Link href="/explore-ideas?category=all">Explore ideas</Link>
         </Button>
         <Button variant="secondary" className="hover:cursor-pointer" asChild>
