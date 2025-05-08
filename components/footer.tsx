@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 export default function Footer() {
   return (
-    <footer className="border-t-2 border-muted">
+    <footer className="border-t-2 border-muted mt-24">
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 p-8">
         <Image
           src="/polkadot.svg"
