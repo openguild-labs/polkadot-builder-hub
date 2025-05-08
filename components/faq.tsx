@@ -10,9 +10,9 @@ import Link from "next/link";
 
 export default function FAQ() {
   return (
-    <div className="flex flex-col gap-4 items-center justify-start h-[800px]">
+    <div className="flex flex-col gap-4 items-center justify-start">
       <h2 className="text-2xl font-bold">Frequently Asked Questions</h2>
-      <Accordion type="multiple" className="w-full md:w-1/2">
+      <Accordion type="single" collapsible className="w-full md:w-1/2">
         <AccordionItem value="item-1">
           <AccordionTrigger className="font-bold">
             What is Polkadot?
