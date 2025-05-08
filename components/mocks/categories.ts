@@ -6,6 +6,7 @@ export type Category = {
   slug: string;
   description: string;
   icon: React.ElementType;
+  image: string;
   ideasFrom: {
     id: number;
     builderName: string;
@@ -20,6 +21,7 @@ export const categories: Category[] = [
     slug: "all",
     description: "View all ideas from all categories",
     icon: ArrowDownAZ,
+    image: "/polkadot-builders-1.png",
     ideasFrom: [],
   },
   {
@@ -28,6 +30,7 @@ export const categories: Category[] = [
     slug: "payment",
     description: "Revolutionizing payments with secure and fast transactions on Polkadot",
     icon: CircleDollarSign,
+    image: "/polkadot-builders-1.png",
     ideasFrom: [],
   },
   {
@@ -36,6 +39,7 @@ export const categories: Category[] = [
     slug: "defi",
     description: "Building decentralized financial systems on Polkadot",
     icon: Droplet,
+    image: "/polkadot-builders-1.png",
     ideasFrom: [],
   },
   {
@@ -44,6 +48,7 @@ export const categories: Category[] = [
     slug: "consumer-dapps",
     description: "Creating user-friendly and accessible DApps for everyday use",
     icon: Laptop,
+    image: "/polkadot-builders-1.png",
     ideasFrom: [],
   },
   {
@@ -52,6 +57,7 @@ export const categories: Category[] = [
     slug: "nfts",
     description: "Creating and trading unique digital assets on Polkadot",
     icon: Image,
+    image: "/polkadot-builders-1.png",
     ideasFrom: [],
   },
   {
@@ -60,6 +66,7 @@ export const categories: Category[] = [
     slug: "infrastructure",
     description: "Building the infrastructure for a decentralized future",
     icon: Server,
+    image: "/polkadot-builders-1.png",
     ideasFrom: [],
   },
   {
@@ -68,6 +75,7 @@ export const categories: Category[] = [
     slug: "developer-tools",
     description: "Tools and resources for building on Polkadot",
     icon: SquareTerminal,
+    image: "/polkadot-builders-1.png",
     ideasFrom: [],
   },
   {
@@ -76,6 +84,7 @@ export const categories: Category[] = [
     slug: "depin",
     description: "Decentralized infrastructure projects on Polkadot",
     icon: Network,
+    image: "/polkadot-builders-1.png",
     ideasFrom: [],
   },
 ];
