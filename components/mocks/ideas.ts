@@ -7,6 +7,7 @@ export const ideas = [
     builder: "Builder 1",
     builderImage: "/todd.jpg",
     level: "Easy",
+    dateAdded: "2025-05-08",
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ export const ideas = [
     builder: "Builder 2",
     builderImage: "/todd.jpg",
     level: "Intermediate",
+    dateAdded: "2025-05-07",
   },
   {
     id: 3,
@@ -25,6 +27,7 @@ export const ideas = [
     builder: "Builder 3",
     builderImage: "/todd.jpg",
     level: "Advanced",
+    dateAdded: "2025-05-06",
   },
   {
     id: 4,
@@ -34,6 +37,7 @@ export const ideas = [
     builder: "Builder 4",
     builderImage: "/todd.jpg",
     level: "Easy",
+    dateAdded: "2025-05-05",
   },
   {
     id: 5,
@@ -43,6 +47,7 @@ export const ideas = [
     builder: "Builder 5",
     builderImage: "/todd.jpg",
     level: "Intermediate",
+    dateAdded: "2025-05-04",
   },
   {
     id: 6,
@@ -52,6 +57,7 @@ export const ideas = [
     builder: "Builder 6",
     builderImage: "/todd.jpg",
     level: "Advanced",
+    dateAdded: "2025-05-03",
   },
   {
     id: 7,
@@ -61,6 +67,7 @@ export const ideas = [
     builder: "Builder 7",
     builderImage: "/todd.jpg",
     level: "Easy",
+    dateAdded: "2025-05-02",
   },
   {
     id: 8,
@@ -70,6 +77,7 @@ export const ideas = [
     builder: "Builder 8",
     builderImage: "/todd.jpg",
     level: "Easy",
+    dateAdded: "2025-05-01",
   },
   {
     id: 9,
@@ -79,6 +87,7 @@ export const ideas = [
     builder: "Builder 9",
     builderImage: "/todd.jpg",
     level: "Easy",
+    dateAdded: "2025-05-01",
   },
   {
     id: 10,
@@ -88,5 +97,6 @@ export const ideas = [
     builder: "Builder 10",
     builderImage: "/todd.jpg",
     level: "Easy",
+    dateAdded: "2025-04-30",
   },
 ];
