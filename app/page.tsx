@@ -24,7 +24,7 @@ export default function Home() {
         </p>
         <div className="flex flex-row gap-4 justify-center">
           <Button className="hover:cursor-pointer" asChild>
-            <Link href="/explore-ideas">Explore ideas</Link>
+            <Link href="/explore-ideas?category=all">Explore ideas</Link>
           </Button>
           <Button variant="secondary" className="hover:cursor-pointer" asChild>
             <Link href="/hackathon-resources">Hackathon resources</Link>
