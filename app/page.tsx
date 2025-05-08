@@ -6,6 +6,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Badge } from "@/components/ui/badge";
+
 
 export default function Home() {
   return (
@@ -59,6 +61,16 @@ export default function Home() {
                 </h3>
               </div>
             </Link>
+            <div
+              className="border-2 border-muted rounded-lg p-4"
+            >
+              <div className="flex flex-col gap-4">
+                <h3 className="text-xl font-bold">
+                  Teammate Finder Directory
+                </h3>
+                <Badge>Coming soon</Badge>
+              </div>
+            </div>
           </div>
         </div>
       </div>
