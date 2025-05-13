@@ -9,14 +9,7 @@ export default function CategoryCard({ category }: { category: Category }) {
       href={`/explore-ideas?category=${category.slug}`}
       className="flex flex-col border rounded-lg w-76 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-foreground/10"
     >
-      <Image
-        src={category.image}
-        alt={category.name}
-        width={300}
-        height={200}
-        className="w-76 rounded-t-lg"
-      />
-      <div className="flex flex-col gap-2 p-4 transition-colors duration-200 hover:bg-[#FF2670] hover:text-white h-[150px] rounded-b-lg">
+      <div className="flex flex-col gap-2 p-4 h-[200px] rounded-lg justify-between">
         <div className="flex flex-row justify-between">
           <div className="flex flex-row gap-2 items-center">
             <category.icon />
@@ -24,7 +17,17 @@ export default function CategoryCard({ category }: { category: Category }) {
           </div>
           <ArrowRight />
         </div>
-        <p className="text-sm line-clamp-3">{category.description}</p>
+        <p className="text-sm line-clamp-3 text-muted-foreground">{category.description}</p>
+        <div className="flex flex-row gap-2 items-center">
+          <div className="flex flex-row gap-2 items-center">
+            <Image src={category.featuredProjects[0].profileImage} alt="Featured Projects" width={40} height={40} className="rounded-full" />
+            <Image src={category.featuredProjects[1].profileImage} alt="Featured Projects" width={40} height={40} className="rounded-full -ml-6" />
+          </div>
+          <div className="flex flex-col">
+            <p className="text-sm text-muted-foreground">Featuring</p>
+            <p className="text-sm">{category.featuredProjects.map((project) => project.builderName).join(", ")}</p>
+          </div>
+        </div>
       </div>
     </Link>
   );

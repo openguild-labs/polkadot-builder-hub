@@ -7,7 +7,7 @@ export type Category = {
   description: string;
   icon: React.ElementType;
   image: string;
-  ideasFrom: {
+  featuredProjects: {
     id: number;
     builderName: string;
     profileImage: string;
@@ -22,7 +22,18 @@ export const categories: Category[] = [
     description: "View all ideas from all categories",
     icon: ArrowDownAZ,
     image: "/polkadot-builders-1.png",
-    ideasFrom: [],
+    featuredProjects: [
+      {
+        id: 0,
+        builderName: "Asset Hub",
+        profileImage: "/logos/bifrost.svg",
+      },
+      {
+        id: 1,
+        builderName: "JAM",
+        profileImage: "/logos/hydration.svg",
+      },
+    ],
   },
   {
     id: 1,
@@ -31,7 +42,18 @@ export const categories: Category[] = [
     description: "Revolutionizing payments with secure and fast transactions on Polkadot",
     icon: CircleDollarSign,
     image: "/polkadot-builders-1.png",
-    ideasFrom: [],
+    featuredProjects: [
+      {
+        id: 0,
+        builderName: "Polkadot App",
+        profileImage: "/logos/bifrost.svg",
+      },
+      {
+        id: 1,
+        builderName: "JAM",
+        profileImage: "/logos/hydration.svg",
+      },
+    ],
   },
   {
     id: 2,
@@ -40,7 +62,18 @@ export const categories: Category[] = [
     description: "Building decentralized financial systems on Polkadot",
     icon: Droplet,
     image: "/polkadot-builders-1.png",
-    ideasFrom: [],
+    featuredProjects: [
+      {
+        id: 0,
+        builderName: "Bifrost",
+        profileImage: "/logos/bifrost.svg",
+      },
+      {
+        id: 1,
+        builderName: "Hydration",
+        profileImage: "/logos/hydration.svg",
+      },
+    ],
   },
   {
     id: 3,
@@ -49,7 +82,18 @@ export const categories: Category[] = [
     description: "Creating user-friendly and accessible DApps for everyday use",
     icon: Laptop,
     image: "/polkadot-builders-1.png",
-    ideasFrom: [],
+    featuredProjects: [
+      {
+        id: 0,
+        builderName: "Polkadot App",
+        profileImage: "/logos/bifrost.svg",
+      },
+      {
+        id: 1,
+        builderName: "Bifrost",
+        profileImage: "/logos/bifrost.svg",
+      },
+    ],
   },
   {
     id: 4,
@@ -58,7 +102,18 @@ export const categories: Category[] = [
     description: "Creating and trading unique digital assets on Polkadot",
     icon: Image,
     image: "/polkadot-builders-1.png",
-    ideasFrom: [],
+    featuredProjects: [
+      {
+        id: 0,
+        builderName: "Polkadot App",
+        profileImage: "/logos/bifrost.svg",
+      },
+      {
+        id: 1,
+        builderName: "Bifrost",
+        profileImage: "/logos/bifrost.svg",
+      },
+    ],
   },
   {
     id: 5,
@@ -67,7 +122,18 @@ export const categories: Category[] = [
     description: "Building the infrastructure for a decentralized future",
     icon: Server,
     image: "/polkadot-builders-1.png",
-    ideasFrom: [],
+    featuredProjects: [
+      {
+        id: 0,
+        builderName: "Polkadot App",
+        profileImage: "/logos/bifrost.svg",
+      },
+      {
+        id: 1,
+        builderName: "Bifrost",
+        profileImage: "/logos/bifrost.svg",
+      },
+    ],
   },
   {
     id: 6,
@@ -76,7 +142,18 @@ export const categories: Category[] = [
     description: "Tools and resources for building on Polkadot",
     icon: SquareTerminal,
     image: "/polkadot-builders-1.png",
-    ideasFrom: [],
+    featuredProjects: [
+      {
+        id: 0,
+        builderName: "Polkadot App",
+        profileImage: "/logos/bifrost.svg",
+      },
+      {
+        id: 1,
+        builderName: "Bifrost",
+        profileImage: "/logos/bifrost.svg",
+      },
+    ],
   },
   {
     id: 7,
@@ -85,6 +162,17 @@ export const categories: Category[] = [
     description: "Decentralized infrastructure projects on Polkadot",
     icon: Network,
     image: "/polkadot-builders-1.png",
-    ideasFrom: [],
+    featuredProjects: [
+      {
+        id: 0,
+        builderName: "Polkadot App",
+        profileImage: "/logos/bifrost.svg",
+      },
+      {
+        id: 1,
+        builderName: "Bifrost",
+        profileImage: "/logos/bifrost.svg",
+      },
+    ],
   },
 ];
