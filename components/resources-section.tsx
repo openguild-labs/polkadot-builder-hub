@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
-import { Trophy, ArrowRight, Handshake } from 'lucide-react';
+import { Trophy, ArrowRight, PartyPopper, Handshake } from 'lucide-react';
 
 export default function ResourcesSection() {
   return (
@@ -31,7 +31,7 @@ export default function ResourcesSection() {
             className="border-2 border-muted rounded-lg p-4 bg-[#7916F3] text-secondary"
           >
             <div className="flex flex-row items-center gap-2">
-              <Handshake className="w-6 h-6" />
+              <PartyPopper className="w-6 h-6" />
               <h3 className="text-xl font-bold">
                 Join Communities to get support
               </h3>

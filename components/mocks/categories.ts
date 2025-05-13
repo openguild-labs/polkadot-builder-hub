@@ -39,7 +39,7 @@ export const categories: Category[] = [
     id: 1,
     name: "Payment",
     slug: "payment",
-    description: "Revolutionizing payments with secure and fast transactions on Polkadot",
+    description: "Revolutionizing payments with secure transactions on Polkadot",
     icon: CircleDollarSign,
     image: "/polkadot-builders-1.png",
     featuredProjects: [

@@ -7,7 +7,7 @@ export default function CategoryCard({ category }: { category: Category }) {
   return (
     <Link
       href={`/explore-ideas?category=${category.slug}`}
-      className="flex flex-col border rounded-lg w-76 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-foreground/10"
+      className="flex flex-col border rounded-lg max-w-84 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-foreground/10"
     >
       <div className="flex flex-col gap-2 p-4 h-[200px] rounded-lg justify-between">
         <div className="flex flex-row justify-between">
