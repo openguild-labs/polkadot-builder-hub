@@ -145,13 +145,13 @@ export const categories: Category[] = [
     featuredProjects: [
       {
         id: 0,
-        builderName: "Polkadot App",
-        profileImage: "/logos/bifrost.svg",
+        builderName: "Polkadot API",
+        profileImage: "/logos/papi.svg",
       },
       {
         id: 1,
-        builderName: "Bifrost",
-        profileImage: "/logos/bifrost.svg",
+        builderName: "Dedot",
+        profileImage: "/logos/dedot.svg",
       },
     ],
   },
