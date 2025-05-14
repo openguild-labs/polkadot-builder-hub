@@ -26,12 +26,12 @@ export const categories: Category[] = [
       {
         id: 0,
         builderName: "Asset Hub",
-        profileImage: "/logos/bifrost.svg",
+        profileImage: "/logos/assethub.svg",
       },
       {
         id: 1,
         builderName: "JAM",
-        profileImage: "/logos/hydration.svg",
+        profileImage: "/logos/jam.svg",
       },
     ],
   },
@@ -46,12 +46,12 @@ export const categories: Category[] = [
       {
         id: 0,
         builderName: "Polkadot App",
-        profileImage: "/logos/bifrost.svg",
+        profileImage: "/logos/polkadot.svg",
       },
       {
         id: 1,
-        builderName: "JAM",
-        profileImage: "/logos/hydration.svg",
+        builderName: "Asset Hub",
+        profileImage: "/logos/assethub.svg",
       },
     ],
   },
@@ -86,12 +86,12 @@ export const categories: Category[] = [
       {
         id: 0,
         builderName: "Polkadot App",
-        profileImage: "/logos/bifrost.svg",
+        profileImage: "/logos/polkadot.svg",
       },
       {
         id: 1,
-        builderName: "Bifrost",
-        profileImage: "/logos/bifrost.svg",
+        builderName: "Mythical",
+        profileImage: "/logos/mythical.svg",
       },
     ],
   },
@@ -105,13 +105,13 @@ export const categories: Category[] = [
     featuredProjects: [
       {
         id: 0,
-        builderName: "Polkadot App",
-        profileImage: "/logos/bifrost.svg",
+        builderName: "Unique",
+        profileImage: "/logos/unique.svg",
       },
       {
         id: 1,
-        builderName: "Bifrost",
-        profileImage: "/logos/bifrost.svg",
+        builderName: "Koda",
+        profileImage: "/logos/koda.svg",
       },
     ],
   },
@@ -125,13 +125,13 @@ export const categories: Category[] = [
     featuredProjects: [
       {
         id: 0,
-        builderName: "Polkadot App",
-        profileImage: "/logos/bifrost.svg",
+        builderName: "Moonbeam",
+        profileImage: "/logos/moonbeam.svg",
       },
       {
         id: 1,
-        builderName: "Bifrost",
-        profileImage: "/logos/bifrost.svg",
+        builderName: "Hyperbridge",
+        profileImage: "/logos/hyperbridge.svg",
       },
     ],
   },
@@ -165,13 +165,13 @@ export const categories: Category[] = [
     featuredProjects: [
       {
         id: 0,
-        builderName: "Polkadot App",
-        profileImage: "/logos/bifrost.svg",
+        builderName: "Crust",
+        profileImage: "/logos/crust.svg",
       },
       {
         id: 1,
-        builderName: "Bifrost",
-        profileImage: "/logos/bifrost.svg",
+        builderName: "Phala",
+        profileImage: "/logos/phala.svg",
       },
     ],
   },
