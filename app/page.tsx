@@ -2,7 +2,7 @@ import FeaturedCategories from "@/components/featured-categories";
 import FAQ from "@/components/faq";
 import ResourcesSection from "@/components/resources-section";
 import HeroSection from "@/components/hero-section";
-
+import PartnerSection from "@/components/partner-section";
 
 export default function Home() {
   return (
@@ -13,6 +13,8 @@ export default function Home() {
       <ResourcesSection />
       {/* Featured Categories Section */}
       <FeaturedCategories />
+      {/* Partner Section */}
+      <PartnerSection />
       {/* FAQ Section */}
       <FAQ />
     </main>
