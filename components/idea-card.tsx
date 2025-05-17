@@ -12,9 +12,11 @@ export interface IdeaCardProps {
 
 export default function IdeaCard({ idea }: { idea: IdeaCardProps }) {
   return (
-    <div className="flex flex-col gap-2 border rounded-lg p-4 h-[150px]">
-      <h2 className="text-lg font-bold">{idea.title}</h2>
-      <p className="text-sm">{idea.description}</p>
+    <div className="flex flex-col gap-2 border rounded-lg p-4 h-[200px] justify-between">
+      <div className="flex flex-col gap-2">
+        <h2 className="text-lg font-bold">{idea.title}</h2>
+        <p className="text-sm">{idea.description}</p>
+      </div>
       <div className="flex flex-row justify-between">
         <div className="flex flex-row gap-2 items-center">
           <Image className="rounded-full" src={idea.builderImage} alt={idea.builder} width={32} height={32} />

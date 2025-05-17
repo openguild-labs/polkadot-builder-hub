@@ -46,8 +46,8 @@ export default function IdeaBoard() {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 h-[400px]">
-      <div className="hidden lg:flex lg:flex-col lg:col-span-1 h-[400px]">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 h-[600px]">
+      <div className="hidden lg:flex lg:flex-col lg:col-span-1 h-[600px]">
         <h2 className="text-lg font-bold mb-4">Categories</h2>
         <div className="flex flex-col gap-2 items-start">
           {categories.map((category) => (
@@ -57,7 +57,7 @@ export default function IdeaBoard() {
           ))}
         </div>
       </div>
-      <div className="lg:col-span-4 flex flex-col h-[400px]">
+      <div className="lg:col-span-4 flex flex-col h-[600px]">
         <div className="flex flex-row justify-between">
           <h2 className="text-lg font-bold mb-4">{selectedCategoryName}</h2>
           <Select onValueChange={handleSortByChange} defaultValue="date">
