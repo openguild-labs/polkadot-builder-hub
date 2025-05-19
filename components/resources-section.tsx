@@ -4,7 +4,7 @@ import { Trophy, ArrowRight, PartyPopper, Handshake } from 'lucide-react';
 
 export default function ResourcesSection() {
   return (
-    <div className="flex flex-col gap-8 items-center">
+    <div className="flex flex-col gap-8 items-center p-4">
       <h2 className="text-2xl font-bold">Welcome aboard, builders!</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Link className="border-2 border-muted rounded-lg p-4 bg-[#FF2670] text-secondary" href="/grants">

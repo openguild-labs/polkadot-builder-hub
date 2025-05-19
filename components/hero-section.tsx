@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function HeroSection() {
   return (
-    <div className="flex flex-col gap-4 text-center items-center justify-center h-[600px]">
+    <div className="flex flex-col gap-4 text-center items-center justify-center h-[700px] bg-gradient-to-br from-cyan-100 via-blue-100 to-purple-400">
       <h1 className="text-4xl font-bold">Polkadot Builders Resources</h1>
       <p className="text-lg text-muted-foreground">
         Aggregated by OpenGuild ♥️

@@ -1123,7 +1123,7 @@ export const winners: Winner[] = [
     "hackathon": "Encode x Polkadot Decoded Hackathon 2023",
     "x": "",
     "pitch": "",
-    "github_link": "https://github.com/Podima2/Track_NFT/"
+    "github_link": "https://github.com/Podima2/Track_NFT"
   },
   {
     "id": 125,
@@ -1240,7 +1240,7 @@ export const winners: Winner[] = [
     "hackathon": "WebZero Hackathon during Web3Submit 2024",
     "x": "https://x.com/joseptec",
     "pitch": "",
-    "github_link": "https://github.com/polkadot-api/web3-blockspace-actions/"
+    "github_link": "https://github.com/polkadot-api/web3-blockspace-actions"
   },
   {
     "id": 138,
@@ -1249,7 +1249,7 @@ export const winners: Winner[] = [
     "hackathon": "WebZero Hackathon during Web3Submit 2024",
     "x": "",
     "pitch": "",
-    "github_link": "https://github.com/deeecent/propcorn/"
+    "github_link": "https://github.com/deeecent/propcorn"
   },
   {
     "id": 139,

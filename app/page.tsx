@@ -6,7 +6,7 @@ import PartnerSection from "@/components/partner-section";
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-32 p-4">
+    <main className="flex flex-col gap-32">
       {/* Hero Section */}
       <HeroSection />
       {/* Resources Section */}
