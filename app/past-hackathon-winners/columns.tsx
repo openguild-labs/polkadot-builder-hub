@@ -3,10 +3,27 @@
 import { ColumnDef } from "@tanstack/react-table"
 import type { Winner } from "@/components/mocks/winners"
 
+function extractXUsername(xLink: string) {
+  const username = xLink.split("/").pop();
+  return username;
+}
+
+function extractGithubUsername(githubLink: string) {
+  const username = githubLink.split("/").pop();
+  return username;
+}
+
 export const columns: ColumnDef<Winner>[] = [
+  {
+    accessorKey: "id",
+    header: "ID",
+  },
   {
     accessorKey: "name",
     header: "Name",
+    cell: ({ row }) => {
+      return <div className="w-[200px] whitespace-normal break-words">{row.original.name}</div>
+    },
   },
   {
     accessorKey: "description",
@@ -18,17 +35,59 @@ export const columns: ColumnDef<Winner>[] = [
   {
     accessorKey: "hackathon",
     header: "Hackathon",
+    cell: ({ row }) => {
+      return <div className="w-[200px] whitespace-normal break-words">{row.original.hackathon}</div>
+    },
   },
   {
-    accessorKey: "xLink",
+    accessorKey: "x",
     header: "X Link",
+    cell: ({ row }) => {
+      return (
+        <>
+          {
+            row.original.x ? (
+              <a href={row.original.x} target="_blank" rel="noopener noreferrer" className="w-[100px] underline underline-offset-4 text-blue-500 whitespace-normal break-words">{extractXUsername(row.original.x)}</a>
+            ) : (
+              <div className="w-[200px] whitespace-normal break-words">n/a</div>
+            )
+          }
+        </>
+      )
+    },
   },
   {
-    accessorKey: "pitchLink",
+    accessorKey: "pitch",
     header: "Pitch Link",
+    cell: ({ row }) => {
+      return (
+        <>
+          {
+            row.original.pitch ? (
+              <a href={row.original.pitch} target="_blank" rel="noopener noreferrer" className="w-[100px] underline underline-offset-4 text-blue-500 whitespace-normal break-words">View</a>
+            ) : (
+              <div className="w-[200px] whitespace-normal break-words">n/a</div>
+            )
+          }
+        </>
+      )
+    },
   },
   {
-    accessorKey: "github",
+    accessorKey: "github_link",
     header: "Github",
+    cell: ({ row }) => {
+      return (
+        <>
+          {
+            row.original.github_link ? (
+              <a href={row.original.github_link} target="_blank" rel="noopener noreferrer" className="w-[100px] underline underline-offset-4 text-blue-500 whitespace-normal break-words">{extractGithubUsername(row.original.github_link)}</a>
+            ) : (
+              <div className="w-[200px] whitespace-normal break-words">n/a</div>
+            )
+          }
+        </>
+      )
+    },
   },
 ]
