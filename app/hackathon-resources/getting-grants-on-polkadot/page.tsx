@@ -5,12 +5,12 @@ import { ExternalLink } from "lucide-react";
 
 export default function Page() {
   return (
-    <main className="flex flex-col gap-8 p-4">
+    <main className="flex flex-col gap-8 p-4 max-w-3xl mx-auto">
       <GoBack href="/hackathon-resources" />
       <h1 className="text-2xl font-bold">Getting grants on Polkadot</h1>
       <div className="flex flex-col gap-4">
         <p>
-          <span className="font-bold bg-[#FF2670] text-secondary py-2 px-1">You are new founders, builders, developers?</span> We have you covered.
+          <span className="font-bold bg-[#FF2670] text-secondary py-1 px-1">You are new founders, builders, developers?</span> We have you covered.
         </p>
         <p>
           Below are the best & straightforward grant opportunities for you to

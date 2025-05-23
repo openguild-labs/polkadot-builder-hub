@@ -11,7 +11,7 @@ export default function ResourceCard({ resource }: { resource: Resource }) {
         <p className="text-sm text-muted-foreground">{resource.description}</p>
       </div>
       <Button asChild className="hover:cursor-pointer self-end mt-auto">
-        <Link href={resource.url}>
+        <Link target={resource.url.includes("https") ? "_blank" : undefined} href={resource.url}>
           View
           {
             resource.url.includes("https") ? <ExternalLink className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />
