@@ -64,7 +64,7 @@ export default function Page() {
                 Polkadot Hackathon Survival Guide (for Hackathon Builders)
               </td>
               <td className="p-3 border-r border-gray-300 bg-gray-50">
-                <a href="https://github.com/polkadot-developers/hackathon-guide/tree/master" className="text-blue-600 hover:underline">
+                <a target="_blank" href="https://github.com/polkadot-developers/hackathon-guide/tree/master" className="text-blue-600 hover:underline">
                   https://github.com/polkadot-developers/hackathon-guide/tree/master
                 </a>
               </td>
@@ -74,7 +74,7 @@ export default function Page() {
                 Polkadot Developers General Resources
               </td>
               <td className="p-3">
-                <a href="https://polkadot.com/developers/" className="text-blue-600 hover:underline">
+                <a target="_blank" href="https://polkadot.com/developers/" className="text-blue-600 hover:underline">
                   https://polkadot.com/developers/
                 </a>
               </td>
@@ -84,7 +84,7 @@ export default function Page() {
                 Polkadot Smart Contracts
               </td>
               <td className="p-3 border-r border-gray-300 bg-gray-50">
-                <a href="https://docs.polkadot.com/develop/smart-contracts/" className="text-blue-600 hover:underline">
+                <a target="_blank" href="https://docs.polkadot.com/develop/smart-contracts/" className="text-blue-600 hover:underline">
                   https://docs.polkadot.com/develop/smart-contracts/
                 </a>
               </td>
@@ -94,7 +94,7 @@ export default function Page() {
                 Polkadot SDK
               </td>
               <td className="p-3">
-                <a href="https://docs.polkadot.com/tutorials/polkadot-sdk/" className="text-blue-600 hover:underline">
+                <a target="_blank" href="https://docs.polkadot.com/tutorials/polkadot-sdk/" className="text-blue-600 hover:underline">
                   https://docs.polkadot.com/tutorials/polkadot-sdk/
                 </a>
               </td>
