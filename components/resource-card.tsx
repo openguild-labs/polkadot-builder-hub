@@ -1,6 +1,6 @@
 import type { Resource } from "@/components/mocks/resources";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function ResourceCard({ resource }: { resource: Resource }) {
@@ -11,9 +11,11 @@ export default function ResourceCard({ resource }: { resource: Resource }) {
         <p className="text-sm text-muted-foreground">{resource.description}</p>
       </div>
       <Button asChild className="hover:cursor-pointer self-end mt-auto">
-        <Link href={resource.path}>
+        <Link href={resource.url}>
           View
-          <ArrowRight />
+          {
+            resource.url.includes("https") ? <ExternalLink className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />
+          }
         </Link>
       </Button>
     </div>
