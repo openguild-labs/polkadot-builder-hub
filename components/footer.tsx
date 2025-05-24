@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="border-t-2 border-muted mt-24">
