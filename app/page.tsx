@@ -7,7 +7,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-32 relative">
+    <main className="flex flex-col gap-24 relative">
       <Image
         src="/background.png"
         alt="Background"
