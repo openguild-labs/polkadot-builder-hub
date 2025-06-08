@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Clock, Plus } from "lucide-react";
 import PostCard from "@/components/post-card";
 import { posts } from "@/components/mocks/posts";
+import Link from "next/link";
 
 export default function Page() {
   const { data: session, isPending } = authClient.useSession();
@@ -27,14 +28,16 @@ export default function Page() {
         <h1 className="text-2xl font-bold">Teammate Finder</h1>
         <div className="flex flex-row items-center justify-between">
           <div className="flex flex-row gap-2">
-            <Button variant="outline">
+            <Button className="hover:cursor-pointer" variant="outline">
               <Clock />
               Recent
             </Button>
           </div>
-          <Button>
-            <Plus />
-            Post
+          <Button className="hover:cursor-pointer" asChild>
+            <Link href="/teammate-finder/create-post">
+              <Plus />
+              Post
+            </Link>
           </Button>
         </div>
         <div className="flex flex-col gap-4">
