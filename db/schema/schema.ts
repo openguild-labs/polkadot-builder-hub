@@ -9,6 +9,7 @@ export const post = pgTable("post", {
   authorId: text("author_id")
     .notNull()
     .references(() => user.id, { onDelete: "cascade" }),
+  tags: json("tags"),
   createdAt: timestamp("created_at")
     .$defaultFn(() => new Date())
     .notNull(),

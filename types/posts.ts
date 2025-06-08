@@ -4,6 +4,7 @@ export type Post = {
   content: string;
   repliedTo?: string;
   authorId: string;
-  createdAt: Date;
-  updatedAt: Date;
+  tags: string[];
+  createdAt: string;
+  updatedAt: string;
 };

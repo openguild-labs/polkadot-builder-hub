@@ -6,6 +6,8 @@ import UnauthorizedComponent from "@/components/unauthorized";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { Clock, Plus } from "lucide-react";
+import PostCard from "@/components/post-card";
+import { posts } from "@/components/mocks/posts";
 
 export default function Page() {
   const { data: session, isPending } = authClient.useSession();
@@ -34,6 +36,11 @@ export default function Page() {
             <Plus />
             Post
           </Button>
+        </div>
+        <div className="flex flex-col gap-4">
+          {posts.map((post) => (
+            <PostCard key={post.id} post={post} />
+          ))}
         </div>
       </main>
     );
