@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
 import { Trophy, ArrowRight, PartyPopper, Handshake } from "lucide-react";
 import Image from "next/image";
 
