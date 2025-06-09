@@ -26,3 +26,9 @@ export type CreatePost = {
   title: string;
   content: string;
 };
+
+export type UpdatePost = {
+  id: string;
+  title: string;
+  content: string;
+};
