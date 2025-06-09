@@ -28,7 +28,7 @@ export function MarkdownPreview({ content }: MarkdownPreviewProps) {
     ),
     img: ({ src, alt }) => (
       // eslint-disable-next-line @next/next/no-img-element
-      <img 
+      <img
         src={typeof src === 'string' ? src : "/placeholder.svg"} 
         alt={alt || ""} 
         width={800}
