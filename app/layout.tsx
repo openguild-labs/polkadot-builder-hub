@@ -3,6 +3,7 @@ import { Unbounded } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import Providers from "@/app/providers";
 
 const unbounded = Unbounded({
   subsets: ['latin'],
@@ -49,9 +50,11 @@ export default function RootLayout({
       <body
         className={unbounded.className}
       >
-        <Header />
-        {children}
-        <Footer />
+        <Providers>
+          <Header />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
