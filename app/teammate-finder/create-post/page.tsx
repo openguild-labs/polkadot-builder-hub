@@ -13,6 +13,30 @@ import { Input } from "@/components/ui/input";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { MarkdownPreview } from "@/components/markdown-preview";
+import { useMutation } from "@tanstack/react-query";
+import { CreatePost } from "@/types/posts";
+
+async function createPost(postData: CreatePost) {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/post`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(postData),
+      credentials: "include",
+    }
+  );
+
+  if (!response.ok) {
+    // You might want to parse the error response body for more details
+    const errorBody = await response.text();
+    throw new Error(`Network response was not ok: ${errorBody}`);
+  }
+
+  return response.json(); // Assumes the API returns JSON on success
+}
 
 export default function CreatePostPage() {
   const { data: session, isPending } = authClient.useSession();
@@ -25,8 +49,24 @@ export default function CreatePostPage() {
     onSubmit: async ({ value }) => {
       // Do something with form data
       console.log(value)
+      createPostMutation(value)
     },
   })
+
+  const {
+    mutate: createPostMutation,
+    isPending: isCreatePostPending,
+    isSuccess: isCreatePostSuccess,
+    reset: resetMutation,
+  } = useMutation({
+    mutationFn: createPost,
+    onSuccess: () => {
+      // Reset success state after 0.5 seconds
+      setTimeout(() => {
+        resetMutation();
+      }, 500);
+    },
+  });
 
   if (isPending) {
     return (
@@ -142,18 +182,16 @@ export default function CreatePostPage() {
                   disabled={!canSubmit}
                   className="hover:cursor-pointer w-[150px]"
                 >
-                  {/* {isCreateBotPending ? (
+                  {isCreatePostPending ? (
                     <Loader2 className="animate-spin" />
-                  ) : isCreateBotSuccess ? (
+                  ) : isCreatePostSuccess ? (
                     <Check />
                   ) : (
                     <>
-                      <BadgePlus />
-                      Create
+                      <Plus />
+                      Create post
                     </>
-                  )} */}
-                  <Plus />
-                  Create post
+                  )}
                 </Button>
               </div>
             )}

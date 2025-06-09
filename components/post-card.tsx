@@ -5,9 +5,9 @@ import { Badge } from "@/components/ui/badge";
 
 export default function PostCard({ post }: { post: Post }) {
   return (
-    <Link href={`/teammate-finder/${post.id}`} className="flex flex-col gap-2 border-2 border-muted rounded-lg p-4 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-foreground/10 justify-between">
+    <Link href={`/teammate-finder/post/${post.id}`} className="flex flex-col gap-2 border-2 border-muted rounded-lg p-4 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-foreground/10 justify-between">
       <div className="flex flex-row gap-2">
-        {post.tags.map((tag) => (
+        {post.tags && post.tags.map((tag) => (
           <Badge key={tag}>{tag}</Badge>
         ))}
       </div>

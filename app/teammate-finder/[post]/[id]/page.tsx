@@ -1,19 +1,19 @@
 "use client";
 
 import GoBack from "@/components/go-back";
+import { useParams } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
-import UnauthorizedComponent from "@/components/unauthorized";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Button } from "@/components/ui/button";
-import { Clock, Plus } from "lucide-react";
-import PostCard from "@/components/post-card";
-import Link from "next/link";
-import { useQuery } from "@tanstack/react-query";
+import UnauthorizedComponent from "@/components/unauthorized";
 import { Post } from "@/types/posts";
+import { useQuery } from "@tanstack/react-query";
+import { Button } from "@/components/ui/button";
+import { RotateCcw } from "lucide-react";
+import { MarkdownPreview } from "@/components/markdown-preview";
 
-const fetchPosts = async (): Promise<Post[]> => {
+const fetchPosts = async (id: string): Promise<Post[]> => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/post?page=1&limit=20`,
+    `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/post?id=${id}&replies=true`,
     {
       method: "GET",
       headers: {
@@ -31,6 +31,7 @@ const fetchPosts = async (): Promise<Post[]> => {
 };
 
 export default function Page() {
+  const { id } = useParams<{ id: string }>();
   const { data: session, isPending } = authClient.useSession();
 
   const {
@@ -43,8 +44,10 @@ export default function Page() {
     refetch,
   } = useQuery<Post[], Error>({
     queryKey: ["posts"],
-    queryFn: fetchPosts,
+    queryFn: () => fetchPosts(id),
   });
+
+  const mainPost = posts?.filter((post) => post.id === id);
 
   if (isPending) {
     return (
@@ -57,27 +60,14 @@ export default function Page() {
   if (session?.user) {
     return (
       <main className="flex flex-col gap-8 p-4 max-w-3xl mx-auto">
-        <GoBack />
-        <h1 className="text-2xl font-bold">Teammate Finder</h1>
         <div className="flex flex-row items-center justify-between">
-          <div className="flex flex-row gap-2">
-            <Button className="hover:cursor-pointer" variant="outline">
-              <Clock />
-              Recent
-            </Button>
-          </div>
-          <Button className="hover:cursor-pointer" asChild>
-            <Link href="/teammate-finder/create-post">
-              <Plus />
-              Post
-            </Link>
+          <GoBack href="/teammate-finder" />
+          <Button className="hover:cursor-pointer" variant="secondary">
+            <RotateCcw />
           </Button>
         </div>
-        <div className="flex flex-col gap-4">
-          {posts?.map((post) => (
-            <PostCard key={post.id} post={post} />
-          ))}
-        </div>
+        <h1 className="text-2xl font-bold">{mainPost?.[0].title}</h1>
+        <MarkdownPreview content={mainPost?.[0].content || ""} />
       </main>
     );
   }
