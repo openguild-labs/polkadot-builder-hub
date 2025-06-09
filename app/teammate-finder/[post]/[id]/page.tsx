@@ -1,7 +1,7 @@
 "use client";
 
+import { use } from 'react'
 import GoBack from "@/components/go-back";
-import { useParams } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { Skeleton } from "@/components/ui/skeleton";
 import UnauthorizedComponent from "@/components/unauthorized";
@@ -32,8 +32,12 @@ const fetchPosts = async (id: string): Promise<PostWithAuthor[]> => {
   return response.json();
 };
 
-export default function Page() {
-  const { id } = useParams<{ id: string }>();
+export default function Page({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}) {
+  const { id } = use(params);
   const { data: session, isPending } = authClient.useSession();
 
   const {
@@ -49,7 +53,7 @@ export default function Page() {
     queryFn: () => fetchPosts(id),
   });
 
-  const mainPost = posts?.filter((post) => post.post.id === id);
+  const mainPost = posts?.find((post) => post.post.id === id);
   const replyPosts = posts?.filter((post) => post.post.repliedTo === id);
 
   if (isPending) {
@@ -94,7 +98,7 @@ export default function Page() {
           <Skeleton className="h-[200px] w-full" />
         ) : (
           <div className="flex flex-col gap-4">
-            <MainPost mainPost={mainPost} />
+            <MainPost mainPost={mainPost ? mainPost : undefined} />
             {replyPosts?.map((replyPost) => (
               <ReplyPost key={replyPost.post.id} replyPost={replyPost} />
             ))}

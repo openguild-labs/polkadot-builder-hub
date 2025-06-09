@@ -15,6 +15,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { MarkdownPreview } from "@/components/markdown-preview";
 import { useMutation } from "@tanstack/react-query";
 import { CreatePost } from "@/types/posts";
+import { useRouter } from "next/navigation";
 
 async function createPost(postData: CreatePost) {
   const response = await fetch(
@@ -40,7 +41,7 @@ async function createPost(postData: CreatePost) {
 
 export default function CreatePostPage() {
   const { data: session, isPending } = authClient.useSession();
-
+  const router = useRouter();
   const form = useForm({
     defaultValues: {
       title: '',
@@ -58,10 +59,12 @@ export default function CreatePostPage() {
     reset: resetMutation,
   } = useMutation({
     mutationFn: createPost,
-    onSuccess: () => {
+    onSuccess: (data) => {
       // Reset success state after 0.5 seconds
       setTimeout(() => {
+        form.reset();
         resetMutation();
+        router.push(`/teammate-finder/post/${data.id}`);
       }, 500);
     },
   });
@@ -180,7 +183,7 @@ export default function CreatePostPage() {
                 <Button
                   type="submit"
                   disabled={!canSubmit}
-                  className="hover:cursor-pointer w-[150px]"
+                  className={`hover:cursor-pointer w-[150px] ${isCreatePostSuccess ? "bg-green-500" : ""}`}
                 >
                   {isCreatePostPending ? (
                     <Loader2 className="animate-spin" />
