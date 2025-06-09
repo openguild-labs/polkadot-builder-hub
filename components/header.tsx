@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ExternalLink } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export default function Header() {
   return (
@@ -12,11 +12,10 @@ export default function Header() {
       <div className="flex flex-row gap-4">
         <Button className="hover:cursor-pointer" asChild>
           <Link
-            href="https://zxstimlabs.notion.site/1f5d4deb717c80dab147e1d2a8794c9a"
-            target="_blank"
+            href="/submit-an-idea"
           >
             Submit an idea
-            <ExternalLink className="w-4 h-4" />
+            <ArrowRight />
           </Link>
         </Button>
       </div>
