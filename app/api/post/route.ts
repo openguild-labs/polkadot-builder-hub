@@ -5,8 +5,7 @@ import { post } from "@/db/schema/schema";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { createId } from "@paralleldrive/cuid2";
-import { Post, PostWithAuthor } from "@/types/posts";
-import { User } from "@/types/users";
+import { PostWithAuthor } from "@/types/posts";
 import { isNull, eq, or, desc } from "drizzle-orm";
 
 // Get post(s)
@@ -44,10 +43,11 @@ export async function GET(request: NextRequest) {
     response = posts
   }
 
-  // if (id && replies === "true") {
-  //   // get the post and posts that are replies to the post, then join with user table to get author name and avatar
-  //   posts = await db.select().from(post).where(or(eq(post.id, id), eq(post.repliedTo, id))).orderBy(desc(post.createdAt)).innerJoin(user, eq(post.authorId, user.id)) as unknown as PostWithAuthor[]
-  // }
+  if (id && replies === "true" && !page && !limit) {
+    // get the post and posts that are replies to the post, then join with user table to get author name and avatar
+    const posts = await db.select().from(post).where(or(eq(post.id, id), eq(post.repliedTo, id))).orderBy(desc(post.createdAt)).innerJoin(user, eq(post.authorId, user.id)) as unknown as PostWithAuthor[]
+    response = posts
+  }
 
   return NextResponse.json(response)
 }

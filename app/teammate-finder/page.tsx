@@ -5,7 +5,14 @@ import { authClient } from "@/lib/auth-client";
 import UnauthorizedComponent from "@/components/unauthorized";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
-import { Clock, Plus, RotateCcw } from "lucide-react";
+import {
+  Clock,
+  Plus,
+  RefreshCcw,
+  Loader2,
+  X,
+  OctagonAlert,
+} from "lucide-react";
 import PostCard from "@/components/post-card";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
@@ -65,8 +72,21 @@ export default function Page() {
               <Clock />
               Recent
             </Button>
-            <Button className="hover:cursor-pointer" variant="secondary" onClick={() => refetch()}>
-              <RotateCcw />
+            <Button
+              variant="secondary"
+              className="w-[100px] hover:cursor-pointer"
+              onClick={() => refetch()}
+            >
+              {isRefetching ? (
+                <Loader2 className="animate-spin" />
+              ) : isRefetchError ? (
+                <X className="w-4 h-4" />
+              ) : (
+                <>
+                  <RefreshCcw />
+                  Refresh
+                </>
+              )}
             </Button>
           </div>
           <Button className="hover:cursor-pointer" asChild>
@@ -77,9 +97,21 @@ export default function Page() {
           </Button>
         </div>
         <div className="flex flex-col gap-4">
-          {postsWithAuthors?.map((item) => (
-            <PostCard key={item.post.id} post={item} />
-          ))}
+          {isError && (
+            <div className="flex flex-row gap-2 items-center bg-red-500 p-2 text-secondary">
+              <OctagonAlert className="w-4 h-4" />
+              <p className="text-lg font-bold">
+                {error.message}. Showing posts from the last fetch.
+              </p>
+            </div>
+          )}
+          {isLoading ? (
+            <Skeleton className="h-[300px] w-full" />
+          ) : (
+            postsWithAuthors?.map((item) => (
+              <PostCard key={item.post.id} post={item} />
+            ))
+          )}
         </div>
       </main>
     );

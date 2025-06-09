@@ -5,14 +5,15 @@ import { useParams } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { Skeleton } from "@/components/ui/skeleton";
 import UnauthorizedComponent from "@/components/unauthorized";
-import { Post } from "@/types/posts";
+import { PostWithAuthor } from "@/types/posts";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { RotateCcw } from "lucide-react";
-import { MarkdownPreview } from "@/components/markdown-preview";
+import { RefreshCcw, Loader2, X, OctagonAlert } from "lucide-react";
+import MainPost from "@/components/main-post";
+import ReplyPost from "@/components/reply-post";
 import AddReply from "@/components/add-reply";
 
-const fetchPosts = async (id: string): Promise<Post[]> => {
+const fetchPosts = async (id: string): Promise<PostWithAuthor[]> => {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/post?id=${id}&replies=true`,
     {
@@ -43,12 +44,13 @@ export default function Page() {
     isRefetching,
     isRefetchError,
     refetch,
-  } = useQuery<Post[], Error>({
+  } = useQuery<PostWithAuthor[], Error>({
     queryKey: ["posts"],
     queryFn: () => fetchPosts(id),
   });
 
-  const mainPost = posts?.filter((post) => post.id === id);
+  const mainPost = posts?.filter((post) => post.post.id === id);
+  const replyPosts = posts?.filter((post) => post.post.repliedTo === id);
 
   if (isPending) {
     return (
@@ -63,12 +65,41 @@ export default function Page() {
       <main className="flex flex-col gap-8 p-4 max-w-3xl mx-auto">
         <div className="flex flex-row items-center justify-between">
           <GoBack href="/teammate-finder" />
-          <Button className="hover:cursor-pointer" variant="secondary">
-            <RotateCcw />
+          <Button
+            variant="secondary"
+            className="w-[100px] hover:cursor-pointer"
+            onClick={() => refetch()}
+          >
+            {isRefetching ? (
+              <Loader2 className="animate-spin" />
+            ) : isRefetchError ? (
+              <X className="w-4 h-4" />
+            ) : (
+              <>
+                <RefreshCcw />
+                Refresh
+              </>
+            )}
           </Button>
         </div>
-        <h1 className="text-2xl font-bold">{mainPost?.[0].title}</h1>
-        <MarkdownPreview content={mainPost?.[0].content || ""} />
+        {isError && (
+          <div className="flex flex-row gap-2 items-center bg-red-500 p-2 text-secondary">
+            <OctagonAlert className="w-4 h-4" />
+            <p className="text-lg font-bold">
+              {error.message}
+            </p>
+          </div>
+        )}
+        {isLoading ? (
+          <Skeleton className="h-[200px] w-full" />
+        ) : (
+          <div className="flex flex-col gap-4">
+            <MainPost mainPost={mainPost} />
+            {replyPosts?.map((replyPost) => (
+              <ReplyPost key={replyPost.post.id} replyPost={replyPost} />
+            ))}
+          </div>
+        )}
         <AddReply id={id} />
       </main>
     );
