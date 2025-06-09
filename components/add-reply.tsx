@@ -39,18 +39,12 @@ export default function AddReply({ id, refetch }: { id: string, refetch: () => v
       content: "",
     },
     onSubmit: async ({ value }) => {
-      console.log(value);
       const postData = {
         title: "Reply to " + id,
         content: value.content,
         repliedTo: id,
       };
       createReplyMutation(postData);
-      setTimeout(() => {
-        form.reset();
-        resetMutation();
-        refetch();
-      }, 500);
     },
   });
 
@@ -64,7 +58,9 @@ export default function AddReply({ id, refetch }: { id: string, refetch: () => v
     onSuccess: () => {
       // Reset success state after 0.5 seconds
       setTimeout(() => {
+        form.reset();
         resetMutation();
+        refetch();
       }, 500);
     },
   });
