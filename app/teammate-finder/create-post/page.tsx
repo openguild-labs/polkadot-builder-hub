@@ -183,12 +183,12 @@ export default function CreatePostPage() {
                 <Button
                   type="submit"
                   disabled={!canSubmit}
-                  className={`hover:cursor-pointer w-[150px] ${isCreatePostSuccess ? "bg-green-500" : ""}`}
+                  className="hover:cursor-pointer w-[150px]"
                 >
                   {isCreatePostPending ? (
                     <Loader2 className="animate-spin" />
                   ) : isCreatePostSuccess ? (
-                    <Check />
+                    <Check className="text-green-500" />
                   ) : (
                     <>
                       <Plus />
