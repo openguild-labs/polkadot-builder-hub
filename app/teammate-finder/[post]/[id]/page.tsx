@@ -99,9 +99,9 @@ export default function Page({
           <Skeleton className="h-[200px] w-full" />
         ) : (
           <div className="flex flex-col gap-4">
-            <MainPost mainPost={mainPost ? mainPost : undefined} user={session?.user as User | null} />
+            <MainPost mainPost={mainPost ? mainPost : undefined} user={session?.user as User | null} refetch={refetch} />
             {replyPosts?.map((replyPost) => (
-              <ReplyPost key={replyPost.post.id} replyPost={replyPost} user={session?.user as User | null} />
+              <ReplyPost key={replyPost.post.id} replyPost={replyPost} user={session?.user as User | null} refetch={refetch} />
             ))}
           </div>
         )}
