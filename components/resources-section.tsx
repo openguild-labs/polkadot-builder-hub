@@ -58,17 +58,19 @@ export default function ResourcesSection() {
                 <ArrowRight className="w-6 h-6" />
               </div>
             </Link>
-            <div className="flex flex-col justify-center rounded-lg p-4 bg-[#DCE2E9]">
-              <div className="flex flex-row items-center gap-2">
+            <Link
+              href="/teammate-finder"
+              className="flex flex-col justify-center rounded-lg p-4 text-primary bg-secondary/80"
+            >
+              <div className="flex flex-row items-center justify-between">
                 <div className="flex flex-row items-center gap-8">
                   <Handshake className="w-16 h-16" />
-                  <h3 className="text-xl font-bold text-muted-foreground">
+                  <h3 className="text-xl font-bold">
                     Teammate Finder Directory
                   </h3>
-                  <Badge>Coming soon</Badge>
                 </div>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
       </div>
