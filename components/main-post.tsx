@@ -11,6 +11,11 @@ export default function MainPost({ mainPost }: { mainPost: PostWithAuthor[] | un
         ))}
       </div>
       <h1 className="text-2xl font-bold">{mainPost?.[0].post.title}</h1>
+      <div className="flex flex-row gap-2">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={mainPost?.[0].user.image || "/todd.jpg"} alt="avatar" width={20} height={20} className="rounded-full" />
+        <p className="text-sm">{mainPost?.[0].user.name}</p>
+      </div>
       <MarkdownPreview content={mainPost?.[0].post.content || ""} />
       <div className="flex flex-row gap-2"></div>
     </div>
