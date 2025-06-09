@@ -10,6 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { RotateCcw } from "lucide-react";
 import { MarkdownPreview } from "@/components/markdown-preview";
+import AddReply from "@/components/add-reply";
 
 const fetchPosts = async (id: string): Promise<Post[]> => {
   const response = await fetch(
@@ -68,6 +69,7 @@ export default function Page() {
         </div>
         <h1 className="text-2xl font-bold">{mainPost?.[0].title}</h1>
         <MarkdownPreview content={mainPost?.[0].content || ""} />
+        <AddReply id={id} />
       </main>
     );
   }

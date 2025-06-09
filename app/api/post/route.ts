@@ -1,10 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/db";
+import { user } from "@/db/schema/auth-schema";
 import { post } from "@/db/schema/schema";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { createId } from "@paralleldrive/cuid2";
-import { Post } from "@/types/posts";
+import { Post, PostWithAuthor } from "@/types/posts";
+import { User } from "@/types/users";
 import { isNull, eq, or, desc } from "drizzle-orm";
 
 // Get post(s)
@@ -23,19 +25,31 @@ export async function GET(request: NextRequest) {
   const page = searchParams.get('page')
   const limit = searchParams.get('limit')
 
-  let posts: Post[] = []
+  let response: PostWithAuthor[] = []
   
   if (page && limit && !id && !replies) {
-    // get recent posts by page and limit without repliedTo
-    posts = await db.select().from(post).where(isNull(post.repliedTo)).limit(Number(limit)).offset((Number(page) - 1) * Number(limit)) as Post[]
+    const pageNum = parseInt(page)
+    const limitNum = parseInt(limit)
+    const offset = (pageNum - 1) * limitNum
+
+    const posts = await db
+      .select()
+      .from(post)
+      .where(isNull(post.repliedTo))
+      .orderBy(desc(post.createdAt))
+      .limit(limitNum)
+      .offset(offset)
+      .innerJoin(user, eq(post.authorId, user.id)) as unknown as PostWithAuthor[]
+
+    response = posts
   }
 
-  if (id && replies === "true") {
-    // get the post and posts that are replied to the post
-    posts = await db.select().from(post).where(or(eq(post.id, id), eq(post.repliedTo, id))).orderBy(desc(post.createdAt)) as Post[]
-  }
+  // if (id && replies === "true") {
+  //   // get the post and posts that are replies to the post, then join with user table to get author name and avatar
+  //   posts = await db.select().from(post).where(or(eq(post.id, id), eq(post.repliedTo, id))).orderBy(desc(post.createdAt)).innerJoin(user, eq(post.authorId, user.id)) as unknown as PostWithAuthor[]
+  // }
 
-  return NextResponse.json(posts)
+  return NextResponse.json(response)
 }
 
 // Create a post
@@ -49,7 +63,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const { title, content } = await request.json()
+  const { title, content, repliedTo } = await request.json()
 
   const id = createId()
 
@@ -57,7 +71,7 @@ export async function POST(request: NextRequest) {
     id: id,
     title: title,
     content: content,
-    repliedTo: null,
+    repliedTo: repliedTo,
     authorId: session.user.id,
     tags: null,
     createdAt: new Date(),

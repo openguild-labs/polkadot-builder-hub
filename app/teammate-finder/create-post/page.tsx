@@ -47,8 +47,6 @@ export default function CreatePostPage() {
       content: '',
     },
     onSubmit: async ({ value }) => {
-      // Do something with form data
-      console.log(value)
       createPostMutation(value)
     },
   })
@@ -138,28 +136,30 @@ export default function CreatePostPage() {
             >
 
               {(field) => {
-              // Avoid hasty abstractions. Render props are great!
-              return (
-                <div className="flex flex-col gap-2">
-                  <Label htmlFor={field.name}>Content</Label>
-                  <Textarea
-                    id={field.name}
-                    name={field.name}
-                    value={field.state.value}
-                    onBlur={field.handleBlur}
-                    onChange={(e) => field.handleChange(e.target.value)}
-                    placeholder="Write your post content in markdown..."
-                    className="min-h-[400px] p-4"
-                  />
-                  <FieldInfo field={field} />
-                </div>
-              )
-            }}
+                // Avoid hasty abstractions. Render props are great!
+                return (
+                  <div className="flex flex-col gap-2">
+                    <Label htmlFor={field.name}>Content</Label>
+                    <Textarea
+                      id={field.name}
+                      name={field.name}
+                      value={field.state.value}
+                      onBlur={field.handleBlur}
+                      onChange={(e) => field.handleChange(e.target.value)}
+                      placeholder="Write your post content in markdown..."
+                      className="min-h-[400px] p-4"
+                    />
+                    <FieldInfo field={field} />
+                  </div>
+                )
+              }}
             </form.Field>
             </TabsContent>
             <TabsContent value="preview" className="mt-0">
               <div className="min-h-[400px] border rounded-md p-4 overflow-auto">
-                <MarkdownPreview content={form.state.values.content} />
+                <form.Subscribe selector={(state) => [state.values.content]}>
+                  {([content]) => <MarkdownPreview content={content} />}
+                </form.Subscribe>
               </div>
             </TabsContent>
           </Tabs>

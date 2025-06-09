@@ -5,13 +5,13 @@ import { authClient } from "@/lib/auth-client";
 import UnauthorizedComponent from "@/components/unauthorized";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
-import { Clock, Plus } from "lucide-react";
+import { Clock, Plus, RotateCcw } from "lucide-react";
 import PostCard from "@/components/post-card";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
-import { Post } from "@/types/posts";
+import { PostWithAuthor } from "@/types/posts";
 
-const fetchPosts = async (): Promise<Post[]> => {
+const fetchPosts = async (): Promise<PostWithAuthor[]> => {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/post?page=1&limit=20`,
     {
@@ -34,15 +34,15 @@ export default function Page() {
   const { data: session, isPending } = authClient.useSession();
 
   const {
-    data: posts,
+    data: postsWithAuthors,
     isLoading,
     isError,
     error,
     isRefetching,
     isRefetchError,
     refetch,
-  } = useQuery<Post[], Error>({
-    queryKey: ["posts"],
+  } = useQuery<PostWithAuthor[], Error>({
+    queryKey: ["postsWithAuthors"],
     queryFn: fetchPosts,
   });
 
@@ -65,6 +65,9 @@ export default function Page() {
               <Clock />
               Recent
             </Button>
+            <Button className="hover:cursor-pointer" variant="secondary" onClick={() => refetch()}>
+              <RotateCcw />
+            </Button>
           </div>
           <Button className="hover:cursor-pointer" asChild>
             <Link href="/teammate-finder/create-post">
@@ -74,8 +77,8 @@ export default function Page() {
           </Button>
         </div>
         <div className="flex flex-col gap-4">
-          {posts?.map((post) => (
-            <PostCard key={post.id} post={post} />
+          {postsWithAuthors?.map((item) => (
+            <PostCard key={item.post.id} post={item} />
           ))}
         </div>
       </main>

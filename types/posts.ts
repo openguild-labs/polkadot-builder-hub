@@ -9,6 +9,19 @@ export type Post = {
   updatedAt: Date;
 };
 
+export type PostWithAuthor = {
+  post: Post;
+  user: {
+    id: string;
+    name: string;
+    image: string;
+    email: string;
+    emailVerified: boolean;
+    createdAt: Date;
+    updatedAt: Date;
+  };
+};
+
 export type CreatePost = {
   title: string;
   content: string;
