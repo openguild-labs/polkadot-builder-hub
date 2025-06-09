@@ -12,6 +12,7 @@ import { RefreshCcw, Loader2, X, OctagonAlert } from "lucide-react";
 import MainPost from "@/components/main-post";
 import ReplyPost from "@/components/reply-post";
 import AddReply from "@/components/add-reply";
+import { User } from "@/types/users";
 
 const fetchPosts = async (id: string): Promise<PostWithAuthor[]> => {
   const response = await fetch(
@@ -98,9 +99,9 @@ export default function Page({
           <Skeleton className="h-[200px] w-full" />
         ) : (
           <div className="flex flex-col gap-4">
-            <MainPost mainPost={mainPost ? mainPost : undefined} />
+            <MainPost mainPost={mainPost ? mainPost : undefined} user={session?.user as User | null} />
             {replyPosts?.map((replyPost) => (
-              <ReplyPost key={replyPost.post.id} replyPost={replyPost} />
+              <ReplyPost key={replyPost.post.id} replyPost={replyPost} user={session?.user as User | null} />
             ))}
           </div>
         )}

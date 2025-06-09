@@ -11,10 +11,10 @@ interface MarkdownPreviewProps {
 
 export function MarkdownPreview({ content }: MarkdownPreviewProps) {
   const components: Components = {
-    h1: ({ children }) => <h1 className="text-xl font-bold mt-6 mb-4">{children}</h1>,
-    h2: ({ children }) => <h2 className="text-lg font-bold mt-5 mb-3">{children}</h2>,
-    h3: ({ children }) => <h3 className="text-md font-bold mt-4 mb-2">{children}</h3>,
-    p: ({ children }) => <p className="my-3 text-sm">{children}</p>,
+    h1: ({ children }) => <h1 className="text-xl font-bold mt-4 mb-2">{children}</h1>,
+    h2: ({ children }) => <h2 className="text-lg font-bold mt-3 mb-2">{children}</h2>,
+    h3: ({ children }) => <h3 className="text-md font-bold mt-2 mb-1">{children}</h3>,
+    p: ({ children }) => <p className="my-2 text-sm">{children}</p>,
     ul: ({ children }) => <ul className="list-disc pl-6 my-3">{children}</ul>,
     ol: ({ children }) => <ol className="list-decimal pl-6 my-3">{children}</ol>,
     li: ({ children }) => <li className="my-1">{children}</li>,
