@@ -6,7 +6,7 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { createId } from "@paralleldrive/cuid2";
 import { PostWithAuthor } from "@/types/posts";
-import { isNull, eq, or, desc } from "drizzle-orm";
+import { isNull, eq, or, desc, and } from "drizzle-orm";
 
 // Get post(s)
 export async function GET(request: NextRequest) {
@@ -79,4 +79,81 @@ export async function POST(request: NextRequest) {
   }).returning()
 
   return NextResponse.json(newPost[0])
+}
+
+// Edit a post
+export async function PATCH(request: NextRequest) {
+  const session = await auth.api.getSession({
+    headers: await headers()
+  })
+
+  if (!session) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const userId = session.user.id
+
+  const { id, title, content } = await request.json()
+
+  if (!id) {
+    return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+  }
+
+  // check if the post is owned by the user
+  const selectedPost = await db.select().from(post).where(and(eq(post.id, id), eq(post.authorId, userId)))
+
+  if (!selectedPost) {
+    return NextResponse.json({ error: "Post not found" }, { status: 404 });
+  }
+
+  if (!title && content) {
+    const updatedPost = await db.update(post).set({
+      content: content,
+    }).where(eq(post.id, id))
+
+    return NextResponse.json(updatedPost, { status: 200 });
+  }
+
+  if (title && content) {
+    const updatedPost = await db.update(post).set({
+      title: title,
+      content: content,
+    }).where(eq(post.id, id))
+
+    return NextResponse.json(updatedPost, { status: 200 });
+  }
+}
+
+// Delete a post
+export async function DELETE(request: NextRequest) {
+  const session = await auth.api.getSession({
+    headers: await headers()
+  })
+
+  if (!session) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const userId = session.user.id
+
+  const { id } = await request.json()
+
+  if (!id) {
+    return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+  }
+
+  // check if the post is owned by the user
+  const selectedPost = await db.select().from(post).where(and(eq(post.id, id), eq(post.authorId, userId)))
+
+  if (!selectedPost) {
+    return NextResponse.json({ error: "Post not found" }, { status: 404 });
+  }
+  
+  const deletedPost = await db.delete(post).where(eq(post.id, id))
+
+  if (!deletedPost) {
+    return NextResponse.json({ error: "Failed to delete post" }, { status: 500 });
+  }
+
+  return NextResponse.json({ message: "Post deleted successfully" }, { status: 200 });
 }

@@ -4,7 +4,6 @@ import remarkGfm from "remark-gfm"
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism"
 import type { Components } from "react-markdown"
-import Image from "next/image"
 
 interface MarkdownPreviewProps {
   content: string
@@ -12,15 +11,15 @@ interface MarkdownPreviewProps {
 
 export function MarkdownPreview({ content }: MarkdownPreviewProps) {
   const components: Components = {
-    h1: ({ children }) => <h1 className="text-3xl font-bold mt-6 mb-4">{children}</h1>,
-    h2: ({ children }) => <h2 className="text-2xl font-bold mt-5 mb-3">{children}</h2>,
-    h3: ({ children }) => <h3 className="text-xl font-bold mt-4 mb-2">{children}</h3>,
-    p: ({ children }) => <p className="my-3">{children}</p>,
+    h1: ({ children }) => <h1 className="text-xl font-bold mt-6 mb-4">{children}</h1>,
+    h2: ({ children }) => <h2 className="text-lg font-bold mt-5 mb-3">{children}</h2>,
+    h3: ({ children }) => <h3 className="text-md font-bold mt-4 mb-2">{children}</h3>,
+    p: ({ children }) => <p className="my-3 text-sm">{children}</p>,
     ul: ({ children }) => <ul className="list-disc pl-6 my-3">{children}</ul>,
     ol: ({ children }) => <ol className="list-decimal pl-6 my-3">{children}</ol>,
     li: ({ children }) => <li className="my-1">{children}</li>,
     a: ({ children, href }) => (
-      <a href={href} className="text-primary underline">
+      <a href={href} className="text-primary underline text-sm">
         {children}
       </a>
     ),
@@ -28,7 +27,8 @@ export function MarkdownPreview({ content }: MarkdownPreviewProps) {
       <blockquote className="border-l-4 border-gray-200 pl-4 italic my-4">{children}</blockquote>
     ),
     img: ({ src, alt }) => (
-      <Image 
+      // eslint-disable-next-line @next/next/no-img-element
+      <img 
         src={typeof src === 'string' ? src : "/placeholder.svg"} 
         alt={alt || ""} 
         width={800}
