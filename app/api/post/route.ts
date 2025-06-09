@@ -136,7 +136,8 @@ export async function DELETE(request: NextRequest) {
 
   const userId = session.user.id
 
-  const { id } = await request.json()
+  const searchParams = request.nextUrl.searchParams
+  const id = searchParams.get('id')
 
   if (!id) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });

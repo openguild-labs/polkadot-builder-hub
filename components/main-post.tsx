@@ -39,6 +39,21 @@ async function updatePost(postData: UpdatePost) {
   return response.json(); // Assumes the API returns JSON on success
 }
 
+async function deletePost(postId: string) {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/post?id=${postId}`,
+    {
+      method: "DELETE",
+      credentials: "include",
+    }
+  );
+
+  if (!response.ok) {
+    const errorBody = await response.text();
+    throw new Error(`Network response was not ok: ${errorBody}`);
+  }
+}
+
 export default function MainPost({
   mainPost,
   user,
@@ -66,15 +81,30 @@ export default function MainPost({
     mutate: updatePostMutation,
     isPending: isUpdatePostPending,
     isSuccess: isUpdatePostSuccess,
-    reset: resetMutation,
+    reset: resetUpdateMutation,
   } = useMutation({
     mutationFn: updatePost,
     onSuccess: () => {
       // Reset success state after 0.5 seconds
       setTimeout(() => {
         form.reset();
-        resetMutation();
+        resetUpdateMutation();
         setIsEditing(false);
+        refetch();
+      }, 500);
+    },
+  });
+
+  const {
+    mutate: deletePostMutation,
+    isPending: isDeletePostPending,
+    isSuccess: isDeletePostSuccess,
+    reset: resetDeleteMutation,
+  } = useMutation({
+    mutationFn: deletePost,
+    onSuccess: () => {
+      setTimeout(() => {
+        resetDeleteMutation();
         refetch();
       }, 500);
     },
@@ -114,8 +144,15 @@ export default function MainPost({
             className="hover:cursor-pointer"
             size="icon"
             variant="destructive"
+            onClick={() => deletePostMutation(mainPost?.post.id || '')}
           >
-            <Trash />
+            {isDeletePostPending ? (
+              <Loader2 className="animate-spin" />
+            ) : isDeletePostSuccess ? (
+              <Check className="text-green-500" />
+            ) : (
+              <Trash />
+            )}
           </Button>
         </div>
       )}
