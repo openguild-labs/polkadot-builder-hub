@@ -12,7 +12,7 @@ export default function HeroSection() {
         <h1 className="text-5xl font-medium">Builders Resources</h1>
         <Image src="/openguild.png" alt="OpenGuild logo" width={100} height={100} className="mt-4" />
         <p className="text-lg font-semibold mt-8">
-          Build your apps secured by Polkadot
+          Build Your Apps Secured By Polkadot
         </p>
         <div className="flex flex-col md:flex-row gap-4 justify-center mt-4">
           <Button className="bg-primary hover:bg-[#FF2670] hover:text-white transition-all duration-200 ease-in-out px-12 py-6 text-lg" asChild>

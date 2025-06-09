@@ -8,7 +8,7 @@ export default function PartnerCard({ partner }: { partner: Partner }) {
         className="rounded-md"
         src={partner.logo}
         alt={partner.title}
-        width={400}
+        width={300}
         height={200}
       />
     </a>
