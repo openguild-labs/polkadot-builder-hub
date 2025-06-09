@@ -12,6 +12,7 @@ import {
   Loader2,
   X,
   OctagonAlert,
+  LogOut
 } from "lucide-react";
 import PostCard from "@/components/post-card";
 import Link from "next/link";
@@ -64,7 +65,13 @@ export default function Page() {
   if (session?.user) {
     return (
       <main className="flex flex-col gap-8 p-4 max-w-3xl mx-auto">
-        <GoBack />
+        <div className="flex flex-row items-center justify-between">
+          <GoBack />
+          <Button className="hover:cursor-pointer" variant="outline" onClick={() => authClient.signOut()}>
+            <LogOut />
+            Sign Out
+          </Button>
+        </div>
         <h1 className="text-2xl font-bold">Teammate Finder</h1>
         <div className="flex flex-row items-center justify-between">
           <div className="flex flex-row gap-2">
