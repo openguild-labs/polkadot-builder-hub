@@ -33,7 +33,7 @@ async function createReply(postData: CreatePost) {
   return response.json(); // Assumes the API returns JSON on success
 }
 
-export default function AddReply({ id }: { id: string }) {
+export default function AddReply({ id, refetch }: { id: string, refetch: () => void }) {
   const form = useForm({
     defaultValues: {
       content: "",
@@ -46,6 +46,11 @@ export default function AddReply({ id }: { id: string }) {
         repliedTo: id,
       };
       createReplyMutation(postData);
+      setTimeout(() => {
+        form.reset();
+        resetMutation();
+        refetch();
+      }, 500);
     },
   });
 

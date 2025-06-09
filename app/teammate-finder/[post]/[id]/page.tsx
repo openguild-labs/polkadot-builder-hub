@@ -100,7 +100,8 @@ export default function Page() {
             ))}
           </div>
         )}
-        <AddReply id={id} />
+        
+        <AddReply id={id} refetch={refetch} />
       </main>
     );
   }
