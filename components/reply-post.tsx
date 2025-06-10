@@ -167,7 +167,7 @@ export default function ReplyPost({
                     </Button>
                   </DialogClose>
                   <Button
-                    className="hover:cursor-pointer"
+                    className="hover:cursor-pointer w-[150px]"
                     variant="destructive"
                     onClick={() =>
                       deleteReplyMutation(replyPost?.post.id || "")

@@ -16,6 +16,17 @@ import { useForm } from "@tanstack/react-form";
 import type { AnyFieldApi } from "@tanstack/react-form";
 import { useMutation } from "@tanstack/react-query";
 import { UpdatePost } from "@/types/posts";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogFooter,
+  DialogClose,
+} from "@/components/ui/dialog";
+
 
 async function updatePost(postData: UpdatePost) {
   const response = await fetch(
@@ -68,14 +79,14 @@ export default function MainPost({
 
   const form = useForm({
     defaultValues: {
-      id: mainPost?.post.id || '',
-      title: mainPost?.post.title || '',
-      content: mainPost?.post.content || '',
+      id: mainPost?.post.id || "",
+      title: mainPost?.post.title || "",
+      content: mainPost?.post.content || "",
     },
     onSubmit: async ({ value }) => {
-      updatePostMutation(value)
+      updatePostMutation(value);
     },
-  })
+  });
 
   const {
     mutate: updatePostMutation,
@@ -119,41 +130,75 @@ export default function MainPost({
       </div>
       {isOwner && (
         <div className="flex flex-row gap-2 self-end">
-          {
-            isEditing ? (
+          {isEditing ? (
+            <Button
+              className="hover:cursor-pointer"
+              size="icon"
+              variant="secondary"
+              onClick={() => setIsEditing(false)}
+            >
+              <X />
+            </Button>
+          ) : (
+            <Button
+              className="hover:cursor-pointer"
+              size="icon"
+              variant="secondary"
+              onClick={() => setIsEditing(true)}
+            >
+              <Pencil />
+            </Button>
+          )}
+          <Dialog>
+            <DialogTrigger asChild>
               <Button
                 className="hover:cursor-pointer"
                 size="icon"
-                variant="secondary"
-                onClick={() => setIsEditing(false)}
+                variant="outline"
               >
-                <X />
+                <Trash />
               </Button>
-            ) : (
-              <Button
-                className="hover:cursor-pointer"
-                size="icon"
-                variant="secondary"
-                onClick={() => setIsEditing(true)}
-              >
-                <Pencil />
-              </Button>
-            )
-          }
-          <Button
-            className="hover:cursor-pointer"
-            size="icon"
-            variant="destructive"
-            onClick={() => deletePostMutation(mainPost?.post.id || '')}
-          >
-            {isDeletePostPending ? (
-              <Loader2 className="animate-spin" />
-            ) : isDeletePostSuccess ? (
-              <Check className="text-green-500" />
-            ) : (
-              <Trash />
-            )}
-          </Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Are you sure?</DialogTitle>
+                <DialogDescription>
+                  This will permanently delete this post.
+                </DialogDescription>
+              </DialogHeader>
+              <DialogFooter>
+                <div className="flex flex-row items-center justify-between w-full">
+                  <DialogClose asChild>
+                    <Button
+                      type="button"
+                      variant="secondary"
+                      className="hover:cursor-pointer"
+                    >
+                      Close
+                    </Button>
+                  </DialogClose>
+                  <Button
+                    className="hover:cursor-pointer w-[150px]"
+                    variant="destructive"
+                    onClick={() =>
+                      deletePostMutation(mainPost?.post.id || "")
+                    }
+                  >
+                    {isDeletePostPending ? (
+                      <Loader2 className="animate-spin" />
+                    ) : isDeletePostSuccess ? (
+                      <Check />
+                    ) : (
+                      <>
+                        <Trash />
+                        Delete
+                      </>
+                    )}
+                  </Button>
+                </div>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
         </div>
       )}
       <h1 className="text-2xl font-bold">{mainPost?.post.title}</h1>
@@ -168,11 +213,7 @@ export default function MainPost({
         />
         <p className="text-sm">{mainPost?.user.name}</p>
       </div>
-      {
-        !isEditing && (
-          <MarkdownPreview content={mainPost?.post.content || ""} />
-        )
-      }
+      {!isEditing && <MarkdownPreview content={mainPost?.post.content || ""} />}
       {isEditing && (
         <div className="flex flex-col gap-2 mt-4">
           <h1 className="text-lg font-bold">Edit Post</h1>
