@@ -14,6 +14,16 @@ import { useForm } from "@tanstack/react-form";
 import type { AnyFieldApi } from "@tanstack/react-form";
 import { useMutation } from "@tanstack/react-query";
 import { UpdateReply } from "@/types/replies";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogFooter,
+  DialogClose,
+} from "@/components/ui/dialog";
 
 async function updateReply(postData: UpdateReply) {
   const response = await fetch(
@@ -37,6 +47,21 @@ async function updateReply(postData: UpdateReply) {
   return response.json(); // Assumes the API returns JSON on success
 }
 
+async function deleteReply(replyId: string) {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/post?id=${replyId}`,
+    {
+      method: "DELETE",
+      credentials: "include",
+    }
+  );
+
+  if (!response.ok) {
+    const errorBody = await response.text();
+    throw new Error(`Network response was not ok: ${errorBody}`);
+  }
+}
+
 export default function ReplyPost({
   replyPost,
   user,
@@ -51,13 +76,13 @@ export default function ReplyPost({
 
   const form = useForm({
     defaultValues: {
-      id: replyPost?.post.id || '',
-      content: replyPost?.post.content || '',
+      id: replyPost?.post.id || "",
+      content: replyPost?.post.content || "",
     },
     onSubmit: async ({ value }) => {
-      updateReplyMutation(value)
+      updateReplyMutation(value);
     },
-  })
+  });
 
   const {
     mutate: updateReplyMutation,
@@ -77,34 +102,92 @@ export default function ReplyPost({
     },
   });
 
+  const {
+    mutate: deleteReplyMutation,
+    isPending: isDeleteReplyPending,
+    isSuccess: isDeleteReplySuccess,
+    reset: resetDeleteReplyMutation,
+  } = useMutation({
+    mutationFn: deleteReply,
+    onSuccess: () => {
+      setTimeout(() => {
+        resetDeleteReplyMutation();
+        refetch();
+      }, 500);
+    },
+  });
+
   return (
     <div className="flex flex-col gap-2 border-2 border-muted rounded-lg p-4">
       {isOwner && (
         <div className="flex flex-row gap-2 self-end">
-          {
-            isEditing ? (
+          {isEditing ? (
+            <Button
+              className="hover:cursor-pointer"
+              size="icon"
+              variant="secondary"
+              onClick={() => setIsEditing(false)}
+            >
+              <X />
+            </Button>
+          ) : (
+            <Button
+              className="hover:cursor-pointer"
+              size="icon"
+              variant="secondary"
+              onClick={() => setIsEditing(true)}
+            >
+              <Pencil />
+            </Button>
+          )}
+          <Dialog>
+            <DialogTrigger asChild>
               <Button
                 className="hover:cursor-pointer"
                 size="icon"
-                variant="secondary"
-                onClick={() => setIsEditing(false)}
+                variant="outline"
               >
-                <X />
+                <Trash />
               </Button>
-            ) : (
-              <Button
-                className="hover:cursor-pointer"
-                size="icon"
-                variant="secondary"
-                onClick={() => setIsEditing(true)}
-              >
-                <Pencil />
-              </Button>
-            )
-          }
-          <Button className="hover:cursor-pointer" size="icon" variant="destructive">
-            <Trash />
-          </Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>
+                  Are you sure?
+                </DialogTitle>
+                <DialogDescription>
+                  This will permanently delete this reply.
+                </DialogDescription>
+              </DialogHeader>
+              <DialogFooter>
+                <div className="flex flex-row items-center justify-between w-full">
+                  <DialogClose asChild>
+                    <Button type="button" variant="secondary" className="hover:cursor-pointer">
+                      Close
+                    </Button>
+                  </DialogClose>
+                  <Button
+                    className="hover:cursor-pointer"
+                    variant="destructive"
+                    onClick={() =>
+                      deleteReplyMutation(replyPost?.post.id || "")
+                    }
+                  >
+                    {isDeleteReplyPending ? (
+                      <Loader2 className="animate-spin" />
+                    ) : isDeleteReplySuccess ? (
+                      <Check />
+                    ) : (
+                      <>
+                        <Trash />
+                        Delete
+                      </>
+                    )}
+                  </Button>
+                </div>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
         </div>
       )}
       <div className="flex flex-row gap-2">
@@ -118,11 +201,9 @@ export default function ReplyPost({
         />
         <p className="text-sm">{replyPost?.user.name}</p>
       </div>
-      {
-        !isEditing && (
-          <MarkdownPreview content={replyPost?.post.content || ""} />
-        )
-      }
+      {!isEditing && (
+        <MarkdownPreview content={replyPost?.post.content || ""} />
+      )}
       {isEditing && (
         <div className="flex flex-col gap-2 mt-4">
           <h1 className="text-lg font-bold">Edit Post</h1>
