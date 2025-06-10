@@ -44,13 +44,13 @@ export default function CreatePostPage() {
   const router = useRouter();
   const form = useForm({
     defaultValues: {
-      title: '',
-      content: '',
+      title: "",
+      content: "",
     },
     onSubmit: async ({ value }) => {
-      createPostMutation(value)
+      createPostMutation(value);
     },
-  })
+  });
 
   const {
     mutate: createPostMutation,
@@ -71,9 +71,24 @@ export default function CreatePostPage() {
 
   if (isPending) {
     return (
-      <div className="flex flex-col gap-4 p-4">
-        <Skeleton className="h-[200px] w-full" />
-      </div>
+      <main className="flex flex-col gap-8 p-4 max-w-3xl mx-auto">
+        <div className="flex flex-row items-center justify-between">
+          <Skeleton className="h-[20px] w-[100px]" />
+        </div>
+        <div className="flex flex-col gap-4">
+          <Skeleton className="h-[40px] w-[100px]" />
+          <div className="flex flex-col gap-2">
+            <Skeleton className="h-[20px] w-[40px]" />
+            <Skeleton className="h-[40px] w-full" />
+          </div>
+        </div>
+        <div className="flex flex-col gap-4">
+          <Skeleton className="h-[40px] w-[100px]" />
+          <div className="flex flex-col gap-2">
+            <Skeleton className="h-[300px] w-full" />
+          </div>
+        </div>
+      </main>
     );
   }
 
@@ -84,9 +99,9 @@ export default function CreatePostPage() {
         <h1 className="text-2xl font-bold">Create a Post</h1>
         <form
           onSubmit={(e) => {
-            e.preventDefault()
-            e.stopPropagation()
-            form.handleSubmit()
+            e.preventDefault();
+            e.stopPropagation();
+            form.handleSubmit();
           }}
           className="space-y-6"
         >
@@ -95,10 +110,10 @@ export default function CreatePostPage() {
             validators={{
               onChange: ({ value }) =>
                 !value
-                  ? 'A title is required'
+                  ? "A title is required"
                   : value.length < 1
-                    ? 'Title must be at least 1 character'
-                    : undefined,
+                  ? "Title must be at least 1 character"
+                  : undefined,
             }}
           >
             {(field) => {
@@ -117,7 +132,7 @@ export default function CreatePostPage() {
                   />
                   <FieldInfo field={field} />
                 </div>
-              )
+              );
             }}
           </form.Field>
           <Tabs defaultValue="edit" className="w-full">
@@ -126,37 +141,36 @@ export default function CreatePostPage() {
               <TabsTrigger value="preview">Preview</TabsTrigger>
             </TabsList>
             <TabsContent value="edit" className="mt-0">
-            <form.Field
-              name="content"
-              validators={{
-                onChange: ({ value }) =>
-                  !value
-                    ? 'Content is required'
-                    : value.length < 1
-                      ? 'Content must be at least 1 character'
+              <form.Field
+                name="content"
+                validators={{
+                  onChange: ({ value }) =>
+                    !value
+                      ? "Content is required"
+                      : value.length < 1
+                      ? "Content must be at least 1 character"
                       : undefined,
-              }}
-            >
-
-              {(field) => {
-                // Avoid hasty abstractions. Render props are great!
-                return (
-                  <div className="flex flex-col gap-2">
-                    <Label htmlFor={field.name}>Content</Label>
-                    <Textarea
-                      id={field.name}
-                      name={field.name}
-                      value={field.state.value}
-                      onBlur={field.handleBlur}
-                      onChange={(e) => field.handleChange(e.target.value)}
-                      placeholder="Write your post content in markdown..."
-                      className="min-h-[400px] p-4"
-                    />
-                    <FieldInfo field={field} />
-                  </div>
-                )
-              }}
-            </form.Field>
+                }}
+              >
+                {(field) => {
+                  // Avoid hasty abstractions. Render props are great!
+                  return (
+                    <div className="flex flex-col gap-2">
+                      <Label htmlFor={field.name}>Content</Label>
+                      <Textarea
+                        id={field.name}
+                        name={field.name}
+                        value={field.state.value}
+                        onBlur={field.handleBlur}
+                        onChange={(e) => field.handleChange(e.target.value)}
+                        placeholder="Write your post content in markdown..."
+                        className="min-h-[400px] p-4"
+                      />
+                      <FieldInfo field={field} />
+                    </div>
+                  );
+                }}
+              </form.Field>
             </TabsContent>
             <TabsContent value="preview" className="mt-0">
               <div className="min-h-[400px] border rounded-md p-4 overflow-auto">
@@ -166,9 +180,7 @@ export default function CreatePostPage() {
               </div>
             </TabsContent>
           </Tabs>
-          <form.Subscribe
-            selector={(state) => [state.canSubmit]}
-          >
+          <form.Subscribe selector={(state) => [state.canSubmit]}>
             {([canSubmit]) => (
               <div className="flex flex-row gap-2 mt-4 justify-end">
                 <Button
@@ -213,7 +225,9 @@ function FieldInfo({ field }: { field: AnyFieldApi }) {
       {field.state.meta.isValidating ? (
         "Checking..."
       ) : field.state.meta.isTouched && !field.state.meta.isValid ? (
-        <em className="text-muted-foreground">{field.state.meta.errors.join(",")}</em>
+        <em className="text-muted-foreground">
+          {field.state.meta.errors.join(",")}
+        </em>
       ) : field.state.meta.isTouched && field.state.meta.isValid ? (
         <div className="text-green-600 flex flex-row gap-2 items-center">
           <Check className="w-5 h-5" />
