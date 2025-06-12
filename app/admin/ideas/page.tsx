@@ -74,7 +74,7 @@ export default function AdminIdeasPage() {
 
   if (isPending) {
     return (
-      <main className="flex flex-col gap-8 p-4">
+      <main className="flex flex-col gap-8 p-4 mt-16">
         <Skeleton className="h-[20px] w-[100px]" />
         <Skeleton className="h-[24px] w-[100px]" />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 h-[600px]">

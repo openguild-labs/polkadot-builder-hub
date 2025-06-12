@@ -55,7 +55,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
 
   if (isPending) {
     return (
-      <main className="flex flex-col gap-8 p-4 max-w-3xl mx-auto">
+      <main className="flex flex-col gap-8 p-4 max-w-3xl mx-auto mt-16">
         <div className="flex flex-row items-center justify-between">
           <Skeleton className="h-[20px] w-[100px]" />
           <Skeleton className="h-[20px] w-[100px]" />
@@ -71,7 +71,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
 
   if (session?.user) {
     return (
-      <main className="flex flex-col gap-8 p-4 max-w-3xl mx-auto">
+      <main className="flex flex-col gap-8 p-4 max-w-3xl mx-auto mt-16">
         <div className="flex flex-row items-center justify-between">
           <GoBack href="/teammate-finder" />
           <Button

@@ -12,7 +12,7 @@ export default function Home() {
         src="/background.png"
         alt="Background"
         fill
-        className="-z-10"
+        className="-z-10 object-cover md:object-fill"
         priority
         quality={100}
       />
