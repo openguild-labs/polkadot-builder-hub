@@ -11,17 +11,17 @@ export default function FAQ() {
   return (
     <div className="flex flex-col items-center">
       <div className="flex flex-col gap-4 items-center justify-start p-4 w-fit">
-        <h2 className="px-12 py-6 text-center text-5xl font-bold w-full rounded-2xl bg-gray-100/40 backdrop-blur-lg border border-white/30">
+        <h2 className="px-12 py-6 text-center text-3xl md:text-4xl font-bold w-full rounded-2xl bg-gray-100/40 backdrop-blur-lg border border-white/30">
           Frequently Asked Questions
         </h2>
-        <div className="w-full md:w-7xl">
+        <div className="w-full md:w-5xl">
           <Accordion
             type="single"
             collapsible
             className="w-full bg-secondary/80 p-8 rounded-2xl"
           >
             <AccordionItem value="item-1">
-              <AccordionTrigger className="font-bold text-2xl">
+              <AccordionTrigger className="font-bold text-xl">
                 What is Polkadot?
               </AccordionTrigger>
               <AccordionContent>
@@ -49,7 +49,7 @@ export default function FAQ() {
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
-              <AccordionTrigger className="font-bold text-2xl">
+              <AccordionTrigger className="font-bold text-xl">
                 What is Polkadot Hub?
               </AccordionTrigger>
               <AccordionContent>
@@ -60,7 +60,7 @@ export default function FAQ() {
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3">
-              <AccordionTrigger className="font-bold text-2xl">
+              <AccordionTrigger className="font-bold text-xl">
                 How do I choose between building a roll up (parachain), or smart
                 contract application?
               </AccordionTrigger>

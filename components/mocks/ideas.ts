@@ -99,7 +99,7 @@ export const ideas = [
   },
   {
     id: 9,
-    title: "Interest-free loans (liquidity)",
+    title: "Interest-free loans (liquity)",
     description: "A protocol offering interest-free loans backed by collateral and stable mechanisms, inspired by Liquity.",
     category: "defi",
     builder: "batman",

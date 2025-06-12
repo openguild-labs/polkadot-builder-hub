@@ -2,8 +2,8 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="border-t-2 border-muted mt-24">
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+    <footer className="border-t-2 border-muted backdrop-blur-md bg-background/80">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 py-12">
         <Image
           src="/polkadot.svg"
           alt="Polkadot Builders"

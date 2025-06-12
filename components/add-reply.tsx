@@ -33,13 +33,12 @@ async function createReply(postData: CreatePost) {
   return response.json(); // Assumes the API returns JSON on success
 }
 
-export default function AddReply({ id }: { id: string }) {
+export default function AddReply({ id, refetch }: { id: string, refetch: () => void }) {
   const form = useForm({
     defaultValues: {
       content: "",
     },
     onSubmit: async ({ value }) => {
-      console.log(value);
       const postData = {
         title: "Reply to " + id,
         content: value.content,
@@ -59,7 +58,9 @@ export default function AddReply({ id }: { id: string }) {
     onSuccess: () => {
       // Reset success state after 0.5 seconds
       setTimeout(() => {
+        form.reset();
         resetMutation();
+        refetch();
       }, 500);
     },
   });
@@ -104,7 +105,7 @@ export default function AddReply({ id }: { id: string }) {
                       onBlur={field.handleBlur}
                       onChange={(e) => field.handleChange(e.target.value)}
                       placeholder="Write your post content in markdown..."
-                      className="min-h-[400px] p-4"
+                      className="min-h-[200px] p-4"
                     />
                     <FieldInfo field={field} />
                   </div>
@@ -113,7 +114,7 @@ export default function AddReply({ id }: { id: string }) {
             </form.Field>
           </TabsContent>
           <TabsContent value="preview" className="mt-0">
-            <div className="min-h-[400px] border rounded-md p-4 overflow-auto">
+            <div className="min-h-[200px] border rounded-md p-4 overflow-auto">
               <form.Subscribe selector={(state) => [state.values.content]}>
                 {([content]) => <MarkdownPreview content={content} />}
               </form.Subscribe>

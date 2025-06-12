@@ -4,7 +4,7 @@ import { grants } from "@/components/mocks/grants";
 
 export default function Grants() {
   return (
-    <div className="flex flex-col gap-4 p-4">
+    <div className="flex flex-col gap-4 p-4 mt-16">
       <GoBack />
       <h1 className="text-2xl font-bold">Grants</h1>
       <p className="text-sm text-muted-foreground">

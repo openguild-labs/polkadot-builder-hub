@@ -2,6 +2,7 @@ import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { db } from "@/db"; // your drizzle instance
 import { user, account, session, verification } from "@/db/schema/auth-schema";
+import { admin } from "better-auth/plugins"
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
@@ -26,4 +27,7 @@ export const auth = betterAuth({
     },
   },
   trustedOrigins: ["http://localhost:3080", "https://polakdot-builders.vercel.app"],
+  plugins: [
+    admin(),
+  ],
 });

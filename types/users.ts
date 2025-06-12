@@ -6,4 +6,8 @@ export type User = {
   image: string;
   createdAt: Date;
   updatedAt: Date;
+  role: string;
+  banned: boolean;
+  banReason: string;
+  banExpires: Date;
 };
