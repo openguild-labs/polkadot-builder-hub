@@ -37,6 +37,7 @@ export async function GET(request: NextRequest) {
           id: idea.id,
           title: idea.title,
           description: idea.description,
+          content: idea.content,
           category: idea.category,
           userId: idea.userId,
           createdAt: idea.createdAt,
@@ -93,7 +94,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const { title, description, category, level } = await request.json()
+  const { title, description, category, level, content } = await request.json()
 
   const id = createId()
 
@@ -101,9 +102,11 @@ export async function POST(request: NextRequest) {
     id: id,
     title: title,
     description: description,
+    content: content,
     category: category,
     userId: session.user.id,
     level: level,
+    status: "pending",
     createdAt: new Date(),
     updatedAt: new Date(),
   }).returning()
@@ -123,7 +126,7 @@ export async function PATCH(request: NextRequest) {
 
   const userId = session.user.id
 
-  const { id, title, description, category, level } = await request.json()
+  const { id, title, description, category, level, content } = await request.json()
 
   if (!id) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -136,10 +139,11 @@ export async function PATCH(request: NextRequest) {
     return NextResponse.json({ error: "Post not found" }, { status: 404 });
   }
 
-  if (title && description && category && level) {
+  if (title && description && category && level && content) {
     const updatedIdea = await db.update(idea).set({
       title: title,
       description: description,
+      content: content,
       category: category,
       level: level,
     }).where(eq(idea.id, id))

@@ -61,9 +61,11 @@ export const idea = pgTable("idea", {
   id: text("id").primaryKey(),
   title: text("title").notNull(),
   description: text("description").notNull(),
+  content: text("content"),
   category: text("category").notNull(),
   userId: text("user_id").notNull().references(() => user.id, { onDelete: "cascade" }),
   level: text("level").notNull(),
+  status: text("status").notNull().default("pending"),
   createdAt: timestamp("created_at")
   .$defaultFn(() => new Date())
   .notNull(),

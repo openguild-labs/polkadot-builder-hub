@@ -8,6 +8,7 @@ export type Idea = {
   id: number;
   title: string;
   description: string;
+  content: string;
   category: string;
   userId: string;
   level: Level;
@@ -36,6 +37,7 @@ export type IdeasWithUsersResponse = {
 export type CreateIdea = {
   title: string;
   description: string;
+  content: string;
   category: string;
   level: Level;
 };
@@ -44,6 +46,7 @@ export type UpdateIdea = {
   id: string;
   title: string;
   description: string;
+  content: string;
   category: string;
   level: Level;
 };

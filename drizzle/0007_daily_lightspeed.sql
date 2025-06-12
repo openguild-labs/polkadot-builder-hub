@@ -1,0 +1,1 @@
+ALTER TABLE "idea" ADD COLUMN "status" text DEFAULT 'pending' NOT NULL;
