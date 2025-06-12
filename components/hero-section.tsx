@@ -7,7 +7,7 @@ export default function HeroSection() {
     <div 
       className="flex flex-col gap-4 text-center items-center justify-center h-[700px] relative"
     >
-      <div className="flex flex-col gap-4 relative z-10 items-center bg-secondary/80 p-4 md:p-24 rounded-4xl">
+      <div className="flex flex-col gap-4 relative z-10 items-center bg-secondary/80 md:p-24 rounded-4xl">
         <Image src="/polkadot.svg" alt="Polkadot logo" width={200} height={200} />
         <h1 className="text-5xl font-medium">Builders Resources</h1>
         <Image src="/openguild.png" alt="OpenGuild logo" width={100} height={100} className="mt-4" />

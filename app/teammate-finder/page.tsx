@@ -21,7 +21,7 @@ import { PostWithAuthor } from "@/types/posts";
 
 const fetchPosts = async (): Promise<PostWithAuthor[]> => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/post?page=1&limit=20`,
+    `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/post?page=1&limit=100`,
     {
       method: "GET",
       headers: {

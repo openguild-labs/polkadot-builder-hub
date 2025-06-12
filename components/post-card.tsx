@@ -2,6 +2,7 @@ import { PostWithAuthor } from "@/types/posts";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { MarkdownPreview } from "@/components/markdown-preview";
+import { formatTimestampToTimeAgo } from "@/lib/utils";
 
 export default function PostCard({ post }: { post: PostWithAuthor }) {
   return (
@@ -17,7 +18,11 @@ export default function PostCard({ post }: { post: PostWithAuthor }) {
         <img src={post.user.image || "/todd.jpg"} alt="avatar" width={20} height={20} className="rounded-full" />
         <p className="text-sm text-muted-foreground">
           {post.user.name}
-        </p>  
+        </p>
+        <p className="text-sm text-muted-foreground">•</p>
+        <p className="text-sm text-muted-foreground">
+          {formatTimestampToTimeAgo(post.post.createdAt)}
+        </p>
       </div>
       <MarkdownPreview content={post.post.content} />
     </Link>

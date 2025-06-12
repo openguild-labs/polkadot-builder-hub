@@ -5,7 +5,7 @@ import { MarkdownPreview } from "@/components/markdown-preview";
 import { PostWithAuthor } from "@/types/posts";
 import { User } from "@/types/users";
 import { Button } from "@/components/ui/button";
-import { Pencil, Trash, Save, X } from "lucide-react";
+import { Pencil, Trash, Save, X, Ellipsis } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -24,6 +24,13 @@ import {
   DialogFooter,
   DialogClose,
 } from "@/components/ui/dialog";
+import { formatTimestampToTimeAgo } from "@/lib/utils";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 async function updateReply(postData: UpdateReply) {
   const response = await fetch(
@@ -119,87 +126,107 @@ export default function ReplyPost({
 
   return (
     <div className="flex flex-col gap-2 border-2 border-muted rounded-lg p-4">
-      {isOwner && (
-        <div className="flex flex-row gap-2 self-end">
-          {isEditing ? (
-            <Button
-              className="hover:cursor-pointer"
-              size="icon"
-              variant="secondary"
-              onClick={() => setIsEditing(false)}
-            >
-              <X />
-            </Button>
-          ) : (
-            <Button
-              className="hover:cursor-pointer"
-              size="icon"
-              variant="secondary"
-              onClick={() => setIsEditing(true)}
-            >
-              <Pencil />
-            </Button>
-          )}
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button
-                className="hover:cursor-pointer"
-                size="icon"
-                variant="outline"
-              >
-                <Trash />
-              </Button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>
-                  Are you sure?
-                </DialogTitle>
-                <DialogDescription>
-                  This will permanently delete this reply.
-                </DialogDescription>
-              </DialogHeader>
-              <DialogFooter>
-                <div className="flex flex-row items-center justify-between w-full">
-                  <DialogClose asChild>
-                    <Button type="button" variant="secondary" className="hover:cursor-pointer">
-                      Close
-                    </Button>
-                  </DialogClose>
-                  <Button
-                    className="hover:cursor-pointer w-[150px]"
-                    variant="destructive"
-                    onClick={() =>
-                      deleteReplyMutation(replyPost?.post.id || "")
-                    }
-                  >
-                    {isDeleteReplyPending ? (
-                      <Loader2 className="animate-spin" />
-                    ) : isDeleteReplySuccess ? (
-                      <Check />
-                    ) : (
-                      <>
-                        <Trash />
-                        Delete
-                      </>
-                    )}
-                  </Button>
-                </div>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
+      <div className="flex flex-row gap-2 justify-between items-center">
+        <div className="flex flex-row gap-2 items-center">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={replyPost?.user.image || "/todd.jpg"}
+            alt="avatar"
+            width={20}
+            height={20}
+            className="rounded-full"
+          />
+          <p className="text-sm">{replyPost?.user.name}</p>
+          <p className="text-sm text-muted-foreground">•</p>
+          <p className="text-sm text-muted-foreground">
+            {formatTimestampToTimeAgo(replyPost?.post.createdAt || new Date())}
+          </p>
         </div>
-      )}
-      <div className="flex flex-row gap-2">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={replyPost?.user.image || "/todd.jpg"}
-          alt="avatar"
-          width={20}
-          height={20}
-          className="rounded-full"
-        />
-        <p className="text-sm">{replyPost?.user.name}</p>
+        {isOwner && (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                className="self-end hover:cursor-pointer"
+                size="icon"
+                variant="ghost"
+              >
+                <Ellipsis />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuItem>
+                {isEditing ? (
+                  <Button
+                    className="hover:cursor-pointer"
+                    variant="ghost"
+                    onClick={() => setIsEditing(false)}
+                  >
+                    <X />
+                    Cancel
+                  </Button>
+                ) : (
+                  <Button
+                    className="hover:cursor-pointer"
+                    variant="ghost"
+                    onClick={() => setIsEditing(true)}
+                  >
+                    <Pencil />
+                    Edit
+                  </Button>
+                )}
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button className="hover:cursor-pointer" variant="ghost">
+                      <Trash />
+                      Delete
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle>Are you sure?</DialogTitle>
+                      <DialogDescription>
+                        This will permanently delete this reply.
+                      </DialogDescription>
+                    </DialogHeader>
+                    <DialogFooter>
+                      <div className="flex flex-row items-center justify-between w-full">
+                        <DialogClose asChild>
+                          <Button
+                            type="button"
+                            variant="secondary"
+                            className="hover:cursor-pointer"
+                          >
+                            Close
+                          </Button>
+                        </DialogClose>
+                        <Button
+                          className="hover:cursor-pointer w-[150px]"
+                          variant="destructive"
+                          onClick={() =>
+                            deleteReplyMutation(replyPost?.post.id || "")
+                          }
+                        >
+                          {isDeleteReplyPending ? (
+                            <Loader2 className="animate-spin" />
+                          ) : isDeleteReplySuccess ? (
+                            <Check />
+                          ) : (
+                            <>
+                              <Trash />
+                              Delete
+                            </>
+                          )}
+                        </Button>
+                      </div>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        )}
       </div>
       {!isEditing && (
         <MarkdownPreview content={replyPost?.post.content || ""} />
