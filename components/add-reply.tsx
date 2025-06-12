@@ -105,7 +105,7 @@ export default function AddReply({ id, refetch }: { id: string, refetch: () => v
                       onBlur={field.handleBlur}
                       onChange={(e) => field.handleChange(e.target.value)}
                       placeholder="Write your post content in markdown..."
-                      className="min-h-[400px] p-4"
+                      className="min-h-[200px] p-4"
                     />
                     <FieldInfo field={field} />
                   </div>
@@ -114,7 +114,7 @@ export default function AddReply({ id, refetch }: { id: string, refetch: () => v
             </form.Field>
           </TabsContent>
           <TabsContent value="preview" className="mt-0">
-            <div className="min-h-[400px] border rounded-md p-4 overflow-auto">
+            <div className="min-h-[200px] border rounded-md p-4 overflow-auto">
               <form.Subscribe selector={(state) => [state.values.content]}>
                 {([content]) => <MarkdownPreview content={content} />}
               </form.Subscribe>
