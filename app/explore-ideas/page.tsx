@@ -1,9 +1,7 @@
 "use client";
 
 import GoBack from "@/components/go-back";
-import { authClient } from "@/lib/auth-client";
 import { Skeleton } from "@/components/ui/skeleton";
-import UnauthorizedComponent from "@/components/unauthorized";
 // import { useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -42,7 +40,7 @@ const fetchIdeas = async (
 };
 
 export default function ExploreIdeasPage() {
-  const { data: session, isPending } = authClient.useSession();
+  // const { data: session, isPending } = authClient.useSession();
   const searchParams = useSearchParams();
   const selectedCategory = searchParams.get("category") || "all";
   const selectedCategoryName =
@@ -72,37 +70,6 @@ export default function ExploreIdeasPage() {
   //   setSortMode(sortBy);
   // }
 
-  if (isPending) {
-    return (
-      <main className="flex flex-col gap-8 p-4 mt-16">
-        <Skeleton className="h-[20px] w-[100px]" />
-        <Skeleton className="h-[24px] w-[100px]" />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 h-[600px]">
-          <div className="hidden lg:flex lg:flex-col lg:col-span-1 h-[600px]">
-            <Skeleton className="h-[24px] w-[100px] mb-4" />
-            <div className="flex flex-col gap-2 items-start">
-              {Array.from({ length: 7 }).map((_, index) => (
-                <Skeleton key={index} className="h-[40px] w-[160px]" />
-              ))}
-            </div>
-          </div>
-          <div className="lg:col-span-4 flex flex-col h-[600px]">
-            <div className="flex flex-row justify-between">
-              <Skeleton className="h-[24px] w-[120px]" />
-              <Skeleton className="h-[40px] w-[180px]" />
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 overflow-y-auto flex-1">
-              {Array.from({ length: 4 }).map((_, index) => (
-                <Skeleton key={index} className="h-[200px] w-full" />
-              ))}
-            </div>
-          </div>
-        </div>
-      </main>
-    );
-  }
-
-  if (session?.user) {
     return (
       <main className="flex flex-col gap-8 p-4 mt-16">
         <GoBack href="/" />
@@ -181,7 +148,4 @@ export default function ExploreIdeasPage() {
         </div>
       </main>
     );
-  }
-
-  return <UnauthorizedComponent />;
 }

@@ -5,7 +5,7 @@ import { idea } from "@/db/schema/schema";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { createId } from "@paralleldrive/cuid2";
-import { AdminIdeaWithUser } from "@/types/ideas";
+import { IdeaWithUser } from "@/types/ideas";
 import { eq, desc, and, sql } from "drizzle-orm";
 
 // Get idea(s)
@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
   const id = searchParams.get('id')
   const category = searchParams.get('category')
 
-  let response: { data: AdminIdeaWithUser[], meta?: { currentPage: number, limit: number, totalPages: number } } = { data: [] }
+  let response: { data: IdeaWithUser[], meta?: { currentPage: number, limit: number, totalPages: number } } = { data: [] }
 
   if (category === "all" && !id) {
     // Get total count of posts and posts data in a single query
@@ -47,7 +47,7 @@ export async function GET(request: NextRequest) {
     .from(idea)
     .where(eq(idea.status, "approved"))
     .orderBy(desc(idea.createdAt))
-    .innerJoin(user, eq(idea.userId, user.id)) as unknown as (AdminIdeaWithUser & { totalCount: number })[]
+    .innerJoin(user, eq(idea.userId, user.id)) as unknown as (IdeaWithUser & { totalCount: number })[]
 
     const totalCount = ideas[0]?.totalCount ?? 0
 
@@ -91,7 +91,7 @@ export async function GET(request: NextRequest) {
       .from(idea)
       .where(and(eq(idea.category, category as string), eq(idea.status, "approved")))
       .orderBy(desc(idea.createdAt))
-      .innerJoin(user, eq(idea.userId, user.id)) as unknown as (AdminIdeaWithUser & { totalCount: number })[]
+      .innerJoin(user, eq(idea.userId, user.id)) as unknown as (IdeaWithUser & { totalCount: number })[]
 
     const totalCount = ideas[0]?.totalCount ?? 0
 
@@ -131,7 +131,7 @@ export async function GET(request: NextRequest) {
       })
       .from(idea)
       .where(eq(idea.id, id))
-      .innerJoin(user, eq(idea.userId, user.id)) as unknown as AdminIdeaWithUser[]
+      .innerJoin(user, eq(idea.userId, user.id)) as unknown as IdeaWithUser[]
     
     response = { data: ideaResult }
   }

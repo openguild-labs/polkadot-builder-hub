@@ -38,7 +38,7 @@ export default function AdminPage() {
 
   if (session?.user.role === "admin") {
     return (
-      <main className="flex flex-col gap-8 p-4 max-w-3xl mx-auto">
+      <main className="flex flex-col gap-8 p-4 max-w-3xl mx-auto mt-16">
         <GoBack />
         <h1 className="text-2xl font-bold">Admin</h1>
         <div className="flex flex-row items-center justify-between">

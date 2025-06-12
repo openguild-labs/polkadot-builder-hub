@@ -104,7 +104,7 @@ export default function AdminIdeasPage() {
 
   if (session?.user.role === "admin") {
     return (
-      <main className="flex flex-col gap-8 p-4">
+      <main className="flex flex-col gap-8 p-4 mt-16">
         <GoBack href="/admin" />
         <h1 className="text-2xl font-bold">Ideas Administration</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 h-[600px]">
