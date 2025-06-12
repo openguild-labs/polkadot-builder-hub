@@ -11,7 +11,7 @@ export default function FAQ() {
   return (
     <div className="flex flex-col items-center">
       <div className="flex flex-col gap-4 items-center justify-start p-4 w-fit">
-        <h2 className="px-12 py-6 text-center text-4xl font-bold w-full rounded-2xl bg-gray-100/40 backdrop-blur-lg border border-white/30">
+        <h2 className="px-12 py-6 text-center text-3xl md:text-4xl font-bold w-full rounded-2xl bg-gray-100/40 backdrop-blur-lg border border-white/30">
           Frequently Asked Questions
         </h2>
         <div className="w-full md:w-5xl">
