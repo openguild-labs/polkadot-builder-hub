@@ -58,7 +58,7 @@ export default function ResourcesSection() {
               </div>
             </Link>
             <Link
-              href="/teammate-finder"
+              href="/teammate-finder?page=1&limit=100"
               className="flex flex-col justify-center rounded-lg p-4 text-primary bg-secondary/80"
             >
               <div className="flex flex-row items-center justify-between">

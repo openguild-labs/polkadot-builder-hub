@@ -17,11 +17,14 @@ import {
 import PostCard from "@/components/post-card";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
-import { PostWithAuthor } from "@/types/posts";
+import { PostsWithAuthorsResponse } from "@/types/posts";
+import PostPagination from "@/components/post-pagination";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
-const fetchPosts = async (): Promise<PostWithAuthor[]> => {
+const fetchPosts = async (page: number, limit: number): Promise<PostsWithAuthorsResponse> => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/post?page=1&limit=100`,
+    `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/post?page=${page}&limit=${limit}`,
     {
       method: "GET",
       headers: {
@@ -40,6 +43,11 @@ const fetchPosts = async (): Promise<PostWithAuthor[]> => {
 
 export default function Page() {
   const { data: session, isPending } = authClient.useSession();
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const page = searchParams.get("page") || 1;
+  const limit = searchParams.get("limit") || 100;
 
   const {
     data: postsWithAuthors,
@@ -49,9 +57,9 @@ export default function Page() {
     isRefetching,
     isRefetchError,
     refetch,
-  } = useQuery<PostWithAuthor[], Error>({
-    queryKey: ["postsWithAuthors"],
-    queryFn: fetchPosts,
+  } = useQuery<PostsWithAuthorsResponse, Error>({
+    queryKey: ["postsWithAuthors", page, limit],
+    queryFn: ({ queryKey }) => fetchPosts(queryKey[1] as number, queryKey[2] as number),
   });
 
   if (isPending) {
@@ -137,11 +145,18 @@ export default function Page() {
           {isLoading ? (
             <Skeleton className="h-[300px] w-full" />
           ) : (
-            postsWithAuthors?.map((item) => (
+            postsWithAuthors?.data?.map((item) => (
               <PostCard key={item.post.id} post={item} />
             ))
           )}
         </div>
+        <PostPagination
+          currentPage={postsWithAuthors?.meta?.currentPage || 1}
+          totalPages={postsWithAuthors?.meta?.totalPages || 1}
+          onPageChange={(page) => {
+            router.push(`/teammate-finder?page=${page}&limit=100`);
+          }}
+        />
       </main>
     );
   }

@@ -5,7 +5,7 @@ import GoBack from "@/components/go-back";
 import { authClient } from "@/lib/auth-client";
 import { Skeleton } from "@/components/ui/skeleton";
 import UnauthorizedComponent from "@/components/unauthorized";
-import { PostWithAuthor } from "@/types/posts";
+import { PostsWithAuthorsResponse } from "@/types/posts";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { RefreshCcw, Loader2, X, OctagonAlert } from "lucide-react";
@@ -14,7 +14,7 @@ import ReplyPost from "@/components/reply-post";
 import AddReply from "@/components/add-reply";
 import { User } from "@/types/users";
 
-const fetchPosts = async (id: string): Promise<PostWithAuthor[]> => {
+const fetchPosts = async (id: string): Promise<PostsWithAuthorsResponse> => {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/post?id=${id}&replies=true`,
     {
@@ -45,13 +45,13 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
     isRefetching,
     isRefetchError,
     refetch,
-  } = useQuery<PostWithAuthor[], Error>({
+  } = useQuery<PostsWithAuthorsResponse, Error>({
     queryKey: ["posts"],
     queryFn: () => fetchPosts(id),
   });
 
-  const mainPost = posts?.find((post) => post.post.id === id);
-  const replyPosts = posts?.filter((post) => post.post.repliedTo === id);
+  const mainPost = posts?.data?.find((post) => post.post.id === id);
+  const replyPosts = posts?.data?.filter((post) => post.post.repliedTo === id);
 
   if (isPending) {
     return (

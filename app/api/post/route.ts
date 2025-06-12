@@ -6,7 +6,7 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { createId } from "@paralleldrive/cuid2";
 import { PostWithAuthor } from "@/types/posts";
-import { isNull, eq, or, desc, and } from "drizzle-orm";
+import { isNull, eq, or, desc, and, count } from "drizzle-orm";
 
 // Get post(s)
 export async function GET(request: NextRequest) {
@@ -24,12 +24,20 @@ export async function GET(request: NextRequest) {
   const page = searchParams.get('page')
   const limit = searchParams.get('limit')
 
-  let response: PostWithAuthor[] = []
+  let response: { data: PostWithAuthor[], meta?: { currentPage: number, limit: number, totalPages: number } } = { data: [] }
   
   if (page && limit && !id && !replies) {
     const pageNum = parseInt(page)
     const limitNum = parseInt(limit)
     const offset = (pageNum - 1) * limitNum
+
+    // Get total count of posts
+    const [{ value: totalCount }] = await db
+      .select({ value: count() })
+      .from(post)
+      .where(isNull(post.repliedTo))
+
+    const totalPages = Math.ceil(totalCount / limitNum)
 
     const posts = await db
       .select()
@@ -40,13 +48,20 @@ export async function GET(request: NextRequest) {
       .offset(offset)
       .innerJoin(user, eq(post.authorId, user.id)) as unknown as PostWithAuthor[]
 
-    response = posts
+    response = {
+      data: posts,
+      meta: {
+        currentPage: pageNum,
+        limit: limitNum,
+        totalPages
+      }
+    }
   }
 
   if (id && replies === "true" && !page && !limit) {
     // get the post and posts that are replies to the post, then join with user table to get author name and avatar
     const posts = await db.select().from(post).where(or(eq(post.id, id), eq(post.repliedTo, id))).orderBy(desc(post.createdAt)).innerJoin(user, eq(post.authorId, user.id)) as unknown as PostWithAuthor[]
-    response = posts
+    response = { data: posts }
   }
 
   return NextResponse.json(response)
