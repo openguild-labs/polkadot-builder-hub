@@ -5,6 +5,21 @@ import { MarkdownPreview } from "@/components/markdown-preview";
 import { formatTimestampToTimeAgo } from "@/lib/utils";
 
 export default function PostCard({ post }: { post: PostWithAuthor }) {
+
+  function truncateContent(content: string) {
+    const lines = content.split('\n');
+    if (lines.length > 4) {
+      return lines.slice(0, 4).join('\n') + '...';
+    }
+    
+    // If it's a single long paragraph, truncate by characters
+    if (lines.length === 1 && content.length > 200) {
+      return content.slice(0, 200) + '...';
+    }
+    
+    return content;
+  }
+
   return (
     <Link href={`/teammate-finder/post/${post.post.id}`} className="flex flex-col gap-2 border-2 border-muted rounded-lg p-4 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-foreground/10 justify-between">
       <div className="flex flex-row gap-2">
@@ -24,7 +39,7 @@ export default function PostCard({ post }: { post: PostWithAuthor }) {
           {formatTimestampToTimeAgo(post.post.createdAt)}
         </p>
       </div>
-      <MarkdownPreview content={post.post.content} />
+      <MarkdownPreview content={truncateContent(post.post.content)} />
     </Link>
   );
 }
