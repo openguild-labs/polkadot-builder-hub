@@ -31,22 +31,24 @@ export async function GET(request: NextRequest) {
     const limitNum = parseInt(limit)
     const offset = (pageNum - 1) * limitNum
 
-    // Get total count of posts
-    const [{ value: totalCount }] = await db
-      .select({ value: count() })
-      .from(post)
-      .where(isNull(post.repliedTo))
+    // Get total count of posts and posts data concurrently
+    const [countResult, posts] = await Promise.all([
+      db
+        .select({ value: count() })
+        .from(post)
+        .where(isNull(post.repliedTo)),
+      db
+        .select()
+        .from(post)
+        .where(isNull(post.repliedTo))
+        .orderBy(desc(post.createdAt))
+        .limit(limitNum)
+        .offset(offset)
+        .innerJoin(user, eq(post.authorId, user.id)) as unknown as PostWithAuthor[]
+    ])
 
+    const totalCount = countResult[0].value
     const totalPages = Math.ceil(totalCount / limitNum)
-
-    const posts = await db
-      .select()
-      .from(post)
-      .where(isNull(post.repliedTo))
-      .orderBy(desc(post.createdAt))
-      .limit(limitNum)
-      .offset(offset)
-      .innerJoin(user, eq(post.authorId, user.id)) as unknown as PostWithAuthor[]
 
     response = {
       data: posts,
