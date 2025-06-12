@@ -9,9 +9,9 @@ export default function ResourcesSection() {
         <h2 className="px-12 py-6 text-center text-4xl font-bold w-full rounded-2xl bg-gray-100/40 backdrop-blur-lg border border-white/30">
           Welcome aboard, builders!
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           <Link
-            className="rounded-lg p-4 text-primary bg-secondary/80"
+            className="rounded-lg p-4 text-primary bg-white/80"
             href="/grants"
           >
             <div className="flex flex-col justify-between">
@@ -33,7 +33,7 @@ export default function ResourcesSection() {
           <div className="grid grid-cols-1 gap-4">
             <Link
               href="/past-hackathon-winners"
-              className="flex flex-col justify-center rounded-lg p-4 text-primary bg-secondary/80"
+              className="flex flex-col justify-center rounded-lg p-4 text-primary bg-white/80"
             >
               <div className="flex flex-row items-center justify-between">
                 <div className="flex flex-row items-center gap-8">
@@ -45,7 +45,7 @@ export default function ResourcesSection() {
             </Link>
             <Link
               href="/join-communities"
-              className="flex flex-col justify-center rounded-lg p-4 text-primary bg-secondary/80"
+              className="flex flex-col justify-center rounded-lg p-4 text-primary bg-white/80"
             >
               <div className="flex flex-row items-center justify-between">
                 <div className="flex flex-row items-center gap-8">
@@ -59,7 +59,7 @@ export default function ResourcesSection() {
             </Link>
             <Link
               href="/teammate-finder?page=1&limit=100"
-              className="flex flex-col justify-center rounded-lg p-4 text-primary bg-secondary/80"
+              className="flex flex-col justify-center rounded-lg p-4 text-primary bg-white/80"
             >
               <div className="flex flex-row items-center justify-between">
                 <div className="flex flex-row items-center gap-8">

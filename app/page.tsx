@@ -7,7 +7,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-24 relative">
+    <main className="flex flex-col relative">
       <Image
         src="/background.png"
         alt="Background"
@@ -18,14 +18,16 @@ export default function Home() {
       />
       {/* Hero Section */}
       <HeroSection />
-      {/* Resources Section */}
-      <ResourcesSection />
-      {/* Featured Categories Section */}
-      <FeaturedCategories />
-      {/* Partner Section */}
-      <PartnerSection />
-      {/* FAQ Section */}
-      <FAQ />
+      <div className="flex flex-col gap-24">
+        {/* Resources Section */}
+        <ResourcesSection />
+        {/* Featured Categories Section */}
+        <FeaturedCategories />
+        {/* Partner Section */}
+        <PartnerSection />
+        {/* FAQ Section */}
+        <FAQ />
+      </div>
     </main>
   );
 }

@@ -10,13 +10,6 @@ import { eq, desc, and, sql } from "drizzle-orm";
 
 // Get idea(s)
 export async function GET(request: NextRequest) {
-  const session = await auth.api.getSession({
-    headers: await headers()
-  })
-
-  if (!session || session.user.role !== "admin") {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
 
   const searchParams = request.nextUrl.searchParams
   const id = searchParams.get('id')
@@ -52,6 +45,7 @@ export async function GET(request: NextRequest) {
       totalCount: sql<number>`(SELECT COUNT(*) FROM ${idea})`
     })
     .from(idea)
+    .where(eq(idea.status, "approved"))
     .orderBy(desc(idea.createdAt))
     .innerJoin(user, eq(idea.userId, user.id)) as unknown as (AdminIdeaWithUser & { totalCount: number })[]
 
@@ -95,7 +89,7 @@ export async function GET(request: NextRequest) {
         totalCount: sql<number>`(SELECT COUNT(*) FROM ${idea})`
       })
       .from(idea)
-      .where(eq(idea.category, category as string))
+      .where(and(eq(idea.category, category as string), eq(idea.status, "approved")))
       .orderBy(desc(idea.createdAt))
       .innerJoin(user, eq(idea.userId, user.id)) as unknown as (AdminIdeaWithUser & { totalCount: number })[]
 

@@ -24,7 +24,7 @@ const fetchIdeas = async (
   category: string
 ): Promise<IdeasWithUsersResponse> => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/admin-idea?category=${category}`,
+    `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/idea?category=${category}`,
     {
       method: "GET",
       headers: {
@@ -102,11 +102,11 @@ export default function ExploreIdeasPage() {
     );
   }
 
-  if (session?.user.role === "admin") {
+  if (session?.user) {
     return (
       <main className="flex flex-col gap-8 p-4">
-        <GoBack href="/admin" />
-        <h1 className="text-2xl font-bold">Ideas Administration</h1>
+        <GoBack href="/" />
+        <h1 className="text-2xl font-bold">Explore Ideas</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 h-[600px]">
           <div className="hidden lg:flex lg:flex-col lg:col-span-1 h-[600px]">
             <h2 className="text-lg font-bold mb-4">Categories</h2>
