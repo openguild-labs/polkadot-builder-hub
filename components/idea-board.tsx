@@ -52,6 +52,7 @@ export default function IdeaBoard() {
         <div className="flex flex-col gap-2 items-start">
           {categories.map((category) => (
             <Button key={category.id} variant="ghost" className="hover:cursor-pointer" onClick={() => handleCategoryChange(category.slug)}>
+              <category.icon />
               {category.name}
             </Button>
           ))}
