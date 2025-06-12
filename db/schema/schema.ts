@@ -56,3 +56,18 @@ export const profile = pgTable("profile", {
     .$defaultFn(() => new Date())
     .notNull(),
 });
+
+export const idea = pgTable("idea", {
+  id: text("id").primaryKey(),
+  title: text("title").notNull(),
+  description: text("description").notNull(),
+  category: text("category").notNull(),
+  userId: text("user_id").notNull().references(() => user.id, { onDelete: "cascade" }),
+  level: text("level").notNull(),
+  createdAt: timestamp("created_at")
+  .$defaultFn(() => new Date())
+  .notNull(),
+  updatedAt: timestamp("updated_at")
+    .$defaultFn(() => new Date())
+    .notNull(),
+});
