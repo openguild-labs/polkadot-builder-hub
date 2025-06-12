@@ -10,5 +10,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-	matcher: ["/teammate-finder"],
+	matcher: ["/teammate-finder", "/submit-an-idea", "/idea-submitted"],
 };
