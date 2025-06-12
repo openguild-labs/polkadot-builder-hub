@@ -1,29 +1,39 @@
-import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
+import { IdeaWithUser } from "@/types/ideas";
+import Link from "next/link";
+import { formatTimestampToTimeAgo } from "@/lib/utils";
 
-export interface IdeaCardProps {
-  title: string;
-  description: string;
-  category: string;
-  builder: string;
-  builderImage: string;
-  level: string;
-}
-
-export default function IdeaCard({ idea }: { idea: IdeaCardProps }) {
+export default function IdeaCard({ idea }: { idea: IdeaWithUser }) {
   return (
-    <div className="flex flex-col gap-2 border rounded-lg p-4 h-[200px] justify-between">
-      <div className="flex flex-col gap-2">
-        <h2 className="text-lg font-bold">{idea.title}</h2>
-        <p className="text-sm">{idea.description}</p>
-      </div>
-      <div className="flex flex-row justify-between">
-        <div className="flex flex-row gap-2 items-center">
-          <Image className="rounded-full" src={idea.builderImage} alt={idea.builder} width={32} height={32} />
-          <p className="text-sm">{idea.builder}</p>
+    <Link href={`/explore-ideas/${idea.idea.id}`}>
+      <div className="flex flex-col gap-2 border rounded-lg p-4 h-[200px] justify-between">
+        <div className="flex flex-col gap-2">
+          <h2 className="text-lg font-bold">{idea.idea.title}</h2>
+          <p className="text-sm">{idea.idea.description}</p>
         </div>
-        <Badge variant="outline">{idea.level}</Badge>
+        <div className="flex flex-row justify-between">
+          <div className="flex flex-row gap-2 items-center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className="rounded-full"
+              src={idea.user.image}
+              alt={idea.user.name}
+              width={32}
+              height={32}
+            />
+            <p className="text-sm">{idea.user.name}</p>
+            <p className="text-sm text-muted-foreground">•</p>
+            <p className="text-sm text-muted-foreground">
+              {formatTimestampToTimeAgo(
+                new Date(idea.idea.createdAt || new Date())
+              )}
+            </p>
+          </div>
+          <div className="flex flex-row gap-2 items-center">
+            <Badge variant="outline">{idea.idea.level}</Badge>
+          </div>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }

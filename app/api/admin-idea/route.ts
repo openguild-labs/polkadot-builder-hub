@@ -8,7 +8,7 @@ import { createId } from "@paralleldrive/cuid2";
 import { AdminIdeaWithUser } from "@/types/ideas";
 import { eq, desc, and, sql } from "drizzle-orm";
 
-// Get post(s)
+// Get idea(s)
 export async function GET(request: NextRequest) {
   const session = await auth.api.getSession({
     headers: await headers()
@@ -184,37 +184,72 @@ export async function PATCH(request: NextRequest) {
     headers: await headers()
   })
 
-  if (!session) {
+  if (!session || session.user.role !== "admin") {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const userId = session.user.id
+  const searchParams = request.nextUrl.searchParams
+  const id = searchParams.get('id')
 
-  const { id, title, description, category, level, content, status } = await request.json()
+  const { title, description, category, level, content, status } = await request.json()
 
   if (!id) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
   }
 
   // check if the post is owned by the user
-  const selectedPost = await db.select().from(idea).where(and(eq(idea.id, id), eq(idea.userId, userId)))
+  const selectedPost = await db.select().from(idea).where(eq(idea.id, id))
 
   if (!selectedPost) {
     return NextResponse.json({ error: "Post not found" }, { status: 404 });
   }
 
-  if (title && description && category && level && content && status) {
-    const updatedIdea = await db.update(idea).set({
-      title: title,
-      description: description,
-      content: content,
-      category: category,
-      level: level,
-      status: status,
-    }).where(eq(idea.id, id))
+  const updateData: Partial<typeof idea.$inferInsert> = {}
+  if (title) updateData.title = title
+  if (description) updateData.description = description
+  if (content) updateData.content = content
+  if (category) updateData.category = category
+  if (level) updateData.level = level
+  if (status) updateData.status = status
 
-    return NextResponse.json(updatedIdea, { status: 200 });
+  if (Object.keys(updateData).length > 0) {
+    await db.update(idea)
+      .set(updateData)
+      .where(eq(idea.id, id));
+
+    // Fetch the updated idea with user information
+    const updatedIdea = await db
+      .select({
+        idea: {
+          id: idea.id,
+          title: idea.title,
+          description: idea.description,
+          content: idea.content,
+          category: idea.category,
+          level: idea.level,
+          status: idea.status,
+          userId: idea.userId,
+          createdAt: idea.createdAt,
+          updatedAt: idea.updatedAt,
+        },
+        user: {
+          id: user.id,
+          name: user.name,
+          image: user.image,
+          email: user.email,
+          emailVerified: user.emailVerified,
+          createdAt: user.createdAt,
+          updatedAt: user.updatedAt,
+        }
+      })
+      .from(idea)
+      .where(eq(idea.id, id))
+      .innerJoin(user, eq(idea.userId, user.id)) as unknown as AdminIdeaWithUser[];
+
+    return NextResponse.json({ data: updatedIdea }, { status: 200 });
   }
+
+  return NextResponse.json({ error: "No fields to update" }, { status: 400 });
 }
 
 // Delete a post

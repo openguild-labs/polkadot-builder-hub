@@ -5,33 +5,72 @@ import { idea } from "@/db/schema/schema";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { createId } from "@paralleldrive/cuid2";
-import { IdeaWithUser } from "@/types/ideas";
-import { isNull, eq, or, desc, and, sql } from "drizzle-orm";
+import { AdminIdeaWithUser } from "@/types/ideas";
+import { eq, desc, and, sql } from "drizzle-orm";
 
-// Get post(s)
+// Get idea(s)
 export async function GET(request: NextRequest) {
   const session = await auth.api.getSession({
     headers: await headers()
   })
 
-  if (!session) {
+  if (!session || session.user.role !== "admin") {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   const searchParams = request.nextUrl.searchParams
   const id = searchParams.get('id')
-  const page = searchParams.get('page')
-  const limit = searchParams.get('limit')
+  const category = searchParams.get('category')
 
-  let response: { data: IdeaWithUser[], meta?: { currentPage: number, limit: number, totalPages: number } } = { data: [] }
-  
-  if (page && limit && !id) {
-    const pageNum = parseInt(page)
-    const limitNum = parseInt(limit)
-    const offset = (pageNum - 1) * limitNum
+  let response: { data: AdminIdeaWithUser[], meta?: { currentPage: number, limit: number, totalPages: number } } = { data: [] }
+
+  if (category === "all" && !id) {
+    // Get total count of posts and posts data in a single query
+    const ideas = await db
+    .select({
+      idea: {
+        id: idea.id,
+        title: idea.title,
+        description: idea.description,
+        content: idea.content,
+        category: idea.category,
+        level: idea.level,
+        status: idea.status,
+        userId: idea.userId,
+        createdAt: idea.createdAt,
+        updatedAt: idea.updatedAt,
+      },
+      user: {
+        id: user.id,
+        name: user.name,
+        image: user.image,
+        email: user.email,
+        emailVerified: user.emailVerified,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt,
+      },
+      totalCount: sql<number>`(SELECT COUNT(*) FROM ${idea})`
+    })
+    .from(idea)
+    .orderBy(desc(idea.createdAt))
+    .innerJoin(user, eq(idea.userId, user.id)) as unknown as (AdminIdeaWithUser & { totalCount: number })[]
+
+    const totalCount = ideas[0]?.totalCount ?? 0
+
+    response = {
+      data: ideas,
+      meta: {
+        currentPage: 1,
+        limit: totalCount,
+        totalPages: 1
+      }
+    }
+  }
+
+  if (category !== "all" && !id) {
 
     // Get total count of posts and posts data in a single query
-    const posts = await db
+    const ideas = await db
       .select({
         idea: {
           id: idea.id,
@@ -53,32 +92,54 @@ export async function GET(request: NextRequest) {
           createdAt: user.createdAt,
           updatedAt: user.updatedAt,
         },
-        totalCount: sql<number>`(SELECT COUNT(*) FROM ${idea} WHERE ${idea.userId} IS NULL)`
+        totalCount: sql<number>`(SELECT COUNT(*) FROM ${idea})`
       })
       .from(idea)
-      .where(isNull(idea.userId))
+      .where(eq(idea.category, category as string))
       .orderBy(desc(idea.createdAt))
-      .limit(limitNum)
-      .offset(offset)
-      .innerJoin(user, eq(idea.userId, user.id)) as unknown as (IdeaWithUser & { totalCount: number })[]
+      .innerJoin(user, eq(idea.userId, user.id)) as unknown as (AdminIdeaWithUser & { totalCount: number })[]
 
-    const totalCount = posts[0]?.totalCount ?? 0
-    const totalPages = Math.ceil(totalCount / limitNum)
+    const totalCount = ideas[0]?.totalCount ?? 0
 
     response = {
-      data: posts,
+      data: ideas,
       meta: {
-        currentPage: pageNum,
-        limit: limitNum,
-        totalPages
+        currentPage: 1,
+        limit: totalCount,
+        totalPages: 1
       }
     }
   }
 
-  if (id && !page && !limit) {
-    // get the post and posts that are replies to the post, then join with user table to get author name and avatar
-    const posts = await db.select().from(idea).where(or(eq(idea.id, id), eq(idea.userId, id))).orderBy(desc(idea.createdAt)).innerJoin(user, eq(idea.userId, user.id)) as unknown as IdeaWithUser[]
-    response = { data: posts }
+  if (id) {
+    const ideaResult = await db
+      .select({
+        idea: {
+          id: idea.id,
+          title: idea.title,
+          description: idea.description,
+          content: idea.content,
+          category: idea.category,
+          level: idea.level,
+          userId: idea.userId,
+          createdAt: idea.createdAt,
+          updatedAt: idea.updatedAt,
+        },
+        user: {
+          id: user.id,
+          name: user.name,
+          image: user.image,
+          email: user.email,
+          emailVerified: user.emailVerified,
+          createdAt: user.createdAt,
+          updatedAt: user.updatedAt,
+        }
+      })
+      .from(idea)
+      .where(eq(idea.id, id))
+      .innerJoin(user, eq(idea.userId, user.id)) as unknown as AdminIdeaWithUser[]
+    
+    response = { data: ideaResult }
   }
 
   return NextResponse.json(response)
