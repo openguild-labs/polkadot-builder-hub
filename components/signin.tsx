@@ -42,7 +42,7 @@ async function signInWithGithub() {
 
 export default function SignIn() {
   return (
-    <div className="flex flex-col gap-8 p-4 max-w-md mx-auto h-[600px]">
+    <div className="flex flex-col gap-8 p-4 max-w-md mx-auto h-[600px] mt-16">
       <GoBack />
       <Card>
         <CardHeader className="flex flex-col gap-6 items-center">

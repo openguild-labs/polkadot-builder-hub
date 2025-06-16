@@ -22,7 +22,18 @@ export type PostWithAuthor = {
   };
 };
 
+export type PostsWithAuthorsResponse = {
+  data: PostWithAuthor[];
+  meta?: { currentPage: number, limit: number, totalPages: number };
+};
+
 export type CreatePost = {
+  title: string;
+  content: string;
+};
+
+export type UpdatePost = {
+  id: string;
   title: string;
   content: string;
 };

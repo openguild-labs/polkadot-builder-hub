@@ -3,7 +3,7 @@ import { ExternalLink } from "lucide-react";
 
 export default function Page() {
   return (
-    <main className="flex flex-col gap-8 p-4 max-w-3xl mx-auto">
+    <main className="flex flex-col gap-8 p-4 max-w-3xl mx-auto mt-16">
       <GoBack href="/hackathon-resources" />
       <h1 className="text-2xl font-bold">Polkadot Developers Resources</h1>
       <div className="flex flex-col gap-2">

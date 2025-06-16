@@ -7,25 +7,27 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-24 relative">
+    <main className="flex flex-col relative">
       <Image
         src="/background.png"
         alt="Background"
         fill
-        className="-z-10"
+        className="-z-10 object-cover md:object-fill"
         priority
         quality={100}
       />
       {/* Hero Section */}
       <HeroSection />
-      {/* Resources Section */}
-      <ResourcesSection />
-      {/* Featured Categories Section */}
-      <FeaturedCategories />
-      {/* Partner Section */}
-      <PartnerSection />
-      {/* FAQ Section */}
-      <FAQ />
+      <div className="flex flex-col gap-24">
+        {/* Resources Section */}
+        <ResourcesSection />
+        {/* Featured Categories Section */}
+        <FeaturedCategories />
+        {/* Partner Section */}
+        <PartnerSection />
+        {/* FAQ Section */}
+        <FAQ />
+      </div>
     </main>
   );
 }
