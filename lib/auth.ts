@@ -5,6 +5,7 @@ import { user, account, session, verification } from "@/db/schema/auth-schema";
 import { admin } from "better-auth/plugins";
 
 export const auth = betterAuth({
+  baseURL: "https://build.openguild.wtf",
   database: drizzleAdapter(db, {
     provider: "pg", // or "mysql", "sqlite"
     schema: {
