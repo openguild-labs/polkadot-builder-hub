@@ -20,9 +20,11 @@ export const auth = betterAuth({
       clientId: process.env.GITHUB_CLIENT_ID as string,
       clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
       mapProfileToUser: (profile) => {
+        const name = profile.name || profile.login || "Unknown User";
+        const nameParts = name.split(" ");
         return {
-          firstName: profile.name.split(" ")[0],
-          lastName: profile.name.split(" ")[1],
+          firstName: nameParts[0] || "Unknown",
+          lastName: nameParts[1] || "",
         };
       },
     },
