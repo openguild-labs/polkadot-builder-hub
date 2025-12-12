@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Trophy, ArrowRight, PartyPopper, Handshake, Coins } from "lucide-react";
+import { ArrowRight, Handshake, Coins } from "lucide-react";
 import Image from "next/image";
 
 export default function ResourcesSection() {
@@ -12,7 +12,8 @@ export default function ResourcesSection() {
             GET STARTED
           </span>
           <h2 className="font-display text-4xl md:text-5xl text-[#1a1a1a] text-center">
-            WELCOME ABOARD<span className="text-[#E6007A]">,</span> BUILDERS<span className="text-[#E6007A]">!</span>
+            WELCOME ABOARD<span className="text-[#E6007A]">,</span> BUILDERS
+            <span className="text-[#E6007A]">!</span>
           </h2>
           <div className="h-1 w-24 bg-[#E6007A] mt-4"></div>
         </div>
@@ -35,10 +36,12 @@ export default function ResourcesSection() {
                   <ArrowRight className="w-6 h-6 text-[#E6007A] group-hover:translate-x-2 transition-transform" />
                 </div>
                 <h3 className="font-display text-xl md:text-2xl text-[#1a1a1a] tracking-wide">
-                  GET GRANTS TO GROW YOUR IDEAS<span className="text-[#E6007A]">!</span>
+                  GET GRANTS TO GROW YOUR IDEAS
+                  <span className="text-[#E6007A]">!</span>
                 </h3>
                 <p className="text-[#1a1a1a]/60 text-sm leading-relaxed">
-                  Access funding opportunities from the Polkadot ecosystem to bring your innovative projects to life.
+                  Access funding opportunities from the Polkadot ecosystem to
+                  bring your innovative projects to life.
                 </p>
               </div>
               <div className="relative w-48 h-48 self-end -mb-4 -mr-4 opacity-60 group-hover:opacity-100 transition-opacity">
@@ -72,7 +75,9 @@ export default function ResourcesSection() {
                   <h3 className="font-display text-lg text-[#1a1a1a] tracking-wide">
                     PAST HACKATHON WINNERS
                   </h3>
-                  <p className="text-[#1a1a1a]/50 text-sm">See the best projects built on Polkadot</p>
+                  <p className="text-[#1a1a1a]/50 text-sm">
+                    See the best projects built on Polkadot
+                  </p>
                 </div>
               </div>
               <ArrowRight className="w-5 h-5 text-[#E6007A] group-hover:translate-x-2 transition-transform" />
@@ -96,7 +101,9 @@ export default function ResourcesSection() {
                   <h3 className="font-display text-lg text-[#1a1a1a] tracking-wide">
                     JOIN COMMUNITIES
                   </h3>
-                  <p className="text-[#1a1a1a]/50 text-sm">Connect with fellow builders worldwide</p>
+                  <p className="text-[#1a1a1a]/50 text-sm">
+                    Connect with fellow builders worldwide
+                  </p>
                 </div>
               </div>
               <ArrowRight className="w-5 h-5 text-[#552BBF] group-hover:translate-x-2 transition-transform" />
@@ -115,7 +122,9 @@ export default function ResourcesSection() {
                   <h3 className="font-display text-lg text-[#1a1a1a] tracking-wide">
                     TEAMMATE FINDER
                   </h3>
-                  <p className="text-[#1a1a1a]/50 text-sm">Find your dream team for hackathons</p>
+                  <p className="text-[#1a1a1a]/50 text-sm">
+                    Find your dream team for hackathons
+                  </p>
                 </div>
               </div>
               <ArrowRight className="w-5 h-5 text-[#00B2FF] group-hover:translate-x-2 transition-transform" />

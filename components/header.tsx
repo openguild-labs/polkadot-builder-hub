@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Menu, X } from "lucide-react";
@@ -45,7 +44,7 @@ export default function Header() {
 
         {/* CTA Button */}
         <div className="hidden md:flex items-center gap-4">
-          <Button 
+          <Button
             className="font-display bg-[#E6007A] hover:bg-[#FF2670] text-white border-0 px-6 py-2 text-sm tracking-wider"
             asChild
           >
@@ -61,7 +60,11 @@ export default function Header() {
           className="md:hidden text-[#1a1a1a] p-2"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
-          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {mobileMenuOpen ? (
+            <X className="w-6 h-6" />
+          ) : (
+            <Menu className="w-6 h-6" />
+          )}
         </button>
       </div>
 
@@ -79,11 +82,14 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
-            <Button 
+            <Button
               className="font-display bg-[#E6007A] hover:bg-[#FF2670] text-white border-0 px-6 py-3 text-sm tracking-wider mt-2"
               asChild
             >
-              <Link href="/submit-an-idea" onClick={() => setMobileMenuOpen(false)}>
+              <Link
+                href="/submit-an-idea"
+                onClick={() => setMobileMenuOpen(false)}
+              >
                 SUBMIT IDEA
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
