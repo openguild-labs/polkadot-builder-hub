@@ -7,53 +7,60 @@ export default function CategoryCard({ category }: { category: Category }) {
   return (
     <Link
       href={`/explore-ideas?category=${category.slug}`}
-      className="flex flex-col border rounded-lg max-w-84 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-foreground/10 relative group"
+      className="group relative bg-white border-2 border-[#1a1a1a] transition-all duration-300 hover:border-[#E6007A] hover:shadow-[4px_4px_0_0_#E6007A]"
     >
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-        <Image
-          src="/resource-bg.png"
-          alt="resource-bg"
-          width={100}
-          height={100}
-          className="w-full h-full object-cover rounded-lg"
-        />
-      </div>
-      <div className="relative z-10">
-        <div className="flex flex-col gap-2 p-4 h-[200px] rounded-lg justify-between">
-          <div className="flex flex-row justify-between">
-            <div className="flex flex-row gap-2 items-center">
-              <category.icon />
-              <h2 className="text-lg font-bold">{category.name}</h2>
+      {/* Hover gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#E6007A]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      
+      <div className="relative z-10 p-6 flex flex-col gap-4 min-h-[220px]">
+        {/* Header */}
+        <div className="flex items-start justify-between">
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-[#E6007A]/10 border-2 border-[#E6007A]/30 group-hover:border-[#E6007A] transition-colors">
+              <category.icon className="w-5 h-5 text-[#E6007A]" />
             </div>
-            <ArrowRight />
+            <h3 className="font-display text-base text-[#1a1a1a] tracking-wide uppercase">
+              {category.name}
+            </h3>
           </div>
-          <p className="text-sm line-clamp-3 text-muted-foreground">
-            {category.description}
-          </p>
-          <div className="flex flex-row gap-2 items-center">
-            <div className="flex flex-row gap-2 items-center">
-              <Image
-                src={category.featuredProjects[0].profileImage}
-                alt="Featured Projects"
-                width={40}
-                height={40}
-                className="rounded-full"
-              />
-              <Image
-                src={category.featuredProjects[1].profileImage}
-                alt="Featured Projects"
-                width={40}
-                height={40}
-                className="rounded-full -ml-6"
-              />
+          <ArrowRight className="w-5 h-5 text-[#E6007A] group-hover:translate-x-1 transition-transform" />
+        </div>
+
+        {/* Description */}
+        <p className="text-[#1a1a1a]/50 text-sm leading-relaxed line-clamp-2">
+          {category.description}
+        </p>
+
+        {/* Featured Projects */}
+        <div className="mt-auto pt-4 border-t-2 border-[#1a1a1a]/10">
+          <div className="flex items-center gap-3">
+            <div className="flex items-center">
+              <div className="w-8 h-8 rounded-full border-2 border-white overflow-hidden bg-[#f5f5f5]">
+                <Image
+                  src={category.featuredProjects[0].profileImage}
+                  alt={category.featuredProjects[0].builderName}
+                  width={32}
+                  height={32}
+                  className="w-full h-full object-contain p-1"
+                />
+              </div>
+              <div className="w-8 h-8 rounded-full border-2 border-white overflow-hidden bg-[#f5f5f5] -ml-2">
+                <Image
+                  src={category.featuredProjects[1].profileImage}
+                  alt={category.featuredProjects[1].builderName}
+                  width={32}
+                  height={32}
+                  className="w-full h-full object-contain p-1"
+                />
+              </div>
             </div>
             <div className="flex flex-col">
-              <p className="text-sm text-muted-foreground">Featuring</p>
-              <p className="text-sm">
+              <span className="text-xs text-[#1a1a1a]/40 font-display tracking-wider">FEATURING</span>
+              <span className="text-xs text-[#1a1a1a]/70">
                 {category.featuredProjects
                   .map((project) => project.builderName)
                   .join(", ")}
-              </p>
+              </span>
             </div>
           </div>
         </div>

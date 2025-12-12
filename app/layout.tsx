@@ -1,15 +1,8 @@
 import type { Metadata } from "next";
-import { Unbounded } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import Providers from "@/app/providers";
-
-const unbounded = Unbounded({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  display: 'swap',
-})
 
 export const metadata: Metadata = {
   title: 'Build on Polkadot',
@@ -47,9 +40,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={unbounded.className}
-      >
+      <body className="antialiased">
         <Providers>
           <Header />
           {children}
