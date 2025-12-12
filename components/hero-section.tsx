@@ -21,14 +21,14 @@ export default function HeroSection() {
 
       {/* Grid background */}
       <div className="absolute inset-0 opacity-40">
-        <div 
+        <div
           className="absolute inset-0"
           style={{
             backgroundImage: `
               linear-gradient(rgba(230, 0, 122, 0.08) 1px, transparent 1px),
               linear-gradient(90deg, rgba(230, 0, 122, 0.08) 1px, transparent 1px)
             `,
-            backgroundSize: '60px 60px',
+            backgroundSize: "60px 60px",
           }}
         />
       </div>
@@ -82,39 +82,11 @@ export default function HeroSection() {
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
-
-        {/* Partner Attribution */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mt-20 text-sm">
-          <span className="text-[#1a1a1a]/40">Made possible by</span>
-          <span className="text-[#E6007A] font-medium">OpenGuild</span>
-          <span className="text-[#1a1a1a]/20">|</span>
-          <span className="text-[#E6007A] font-medium">Web3 Foundation</span>
-          <span className="text-[#1a1a1a]/20">|</span>
-          <span className="text-[#E6007A] font-medium">Polkadot</span>
-        </div>
-
-        {/* Partner Logos */}
-        <div className="flex items-center justify-center gap-10 mt-6">
-          <Image
-            src="/openguild.png"
-            alt="OpenGuild"
-            width={36}
-            height={36}
-            className="opacity-50 hover:opacity-100 transition-opacity duration-300"
-          />
-          <Image
-            src="/polkadot.svg"
-            alt="Polkadot"
-            width={36}
-            height={36}
-            className="opacity-50 hover:opacity-100 transition-opacity duration-300"
-          />
-        </div>
       </div>
 
       {/* Bottom gradient fade */}
       <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white to-transparent pointer-events-none" />
-      
+
       {/* Corner decorations */}
       <div className="absolute top-8 left-8 w-16 h-16 border-l-2 border-t-2 border-[#E6007A]/30" />
       <div className="absolute top-8 right-8 w-16 h-16 border-r-2 border-t-2 border-[#E6007A]/30" />
