@@ -82,7 +82,7 @@ export default function HackathonSection() {
               </div>
             </div>
             <Link
-              href="https://polkadot-hub-hackathon.vercel.app/"
+              href="https://hackathon.openguild.wtf/"
               target="_blank"
               className="group flex items-center gap-2 px-8 py-4 bg-[#E6007A] hover:bg-[#ff1a88] text-white font-display text-sm tracking-wider transition-all"
             >
@@ -221,7 +221,7 @@ export default function HackathonSection() {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
-              href="https://polkadot-hub-hackathon.vercel.app/"
+              href="https://hackathon.openguild.wtf/"
               target="_blank"
               className="group flex items-center gap-2 px-8 py-4 bg-[#E6007A] hover:bg-[#ff1a88] text-white font-display text-sm tracking-wider transition-all"
             >

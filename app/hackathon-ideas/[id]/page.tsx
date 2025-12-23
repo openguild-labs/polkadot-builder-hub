@@ -123,7 +123,7 @@ export default function IdeaDetailPage({ params }: PageProps) {
 
           {/* CTA */}
           <Link
-            href="https://polkadot-hub-hackathon.vercel.app/"
+            href="https://hackathon.openguild.wtf/"
             target="_blank"
             className="inline-flex items-center gap-2 px-6 py-3 bg-[#E6007A] hover:bg-[#ff1a88] text-white font-display text-sm tracking-wider transition-all"
           >
@@ -426,7 +426,7 @@ export default function IdeaDetailPage({ params }: PageProps) {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="https://polkadot-hub-hackathon.vercel.app/"
+              href="https://hackathon.openguild.wtf/"
               target="_blank"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#E6007A] hover:bg-[#ff1a88] text-white font-display text-sm tracking-wider transition-all"
             >
