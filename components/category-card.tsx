@@ -7,7 +7,7 @@ export default function CategoryCard({ category }: { category: Category }) {
   return (
     <Link
       href={`/explore-ideas?category=${category.slug}`}
-      className="group relative bg-white border-2 border-[#1a1a1a] transition-all duration-300 hover:border-[#E6007A] hover:shadow-[4px_4px_0_0_#E6007A]"
+      className="group relative bg-white border-2 border-[#1a1a1a] transition-all duration-300 hover:border-polkadot-pink hover:shadow-[4px_4px_0_0_#E6007A]"
     >
       {/* Hover gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#E6007A]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -16,7 +16,7 @@ export default function CategoryCard({ category }: { category: Category }) {
         {/* Header */}
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-[#E6007A]/10 border-2 border-[#E6007A]/30 group-hover:border-[#E6007A] transition-colors">
+            <div className="p-2 bg-[#E6007A]/10 border-2 border-polkadot-pink/30 group-hover:border-polkadot-pink transition-colors">
               <category.icon className="w-5 h-5 text-polkadot-pink" />
             </div>
             <h3 className="font-display text-base text-[#1a1a1a] tracking-wide uppercase">

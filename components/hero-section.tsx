@@ -76,7 +76,7 @@ export default function HeroSection() {
           </Link>
           <Link
             href="/hackathon-resources"
-            className="group flex items-center gap-3 px-10 py-4 border-2 border-[#1a1a1a] hover:border-[#E6007A] text-[#1a1a1a] hover:text-polkadot-pink font-display text-sm tracking-wider transition-all duration-200"
+            className="group flex items-center gap-3 px-10 py-4 border-2 border-[#1a1a1a] hover:border-polkadot-pink text-[#1a1a1a] hover:text-polkadot-pink font-display text-sm tracking-wider transition-all duration-200"
           >
             <span>View Resources</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -88,10 +88,10 @@ export default function HeroSection() {
       <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white to-transparent pointer-events-none" />
 
       {/* Corner decorations */}
-      <div className="absolute top-8 left-8 w-16 h-16 border-l-2 border-t-2 border-[#E6007A]/30" />
-      <div className="absolute top-8 right-8 w-16 h-16 border-r-2 border-t-2 border-[#E6007A]/30" />
-      <div className="absolute bottom-8 left-8 w-16 h-16 border-l-2 border-b-2 border-[#E6007A]/30" />
-      <div className="absolute bottom-8 right-8 w-16 h-16 border-r-2 border-b-2 border-[#E6007A]/30" />
+      <div className="absolute top-8 left-8 w-16 h-16 border-l-2 border-t-2 border-polkadot-pink/30" />
+      <div className="absolute top-8 right-8 w-16 h-16 border-r-2 border-t-2 border-polkadot-pink/30" />
+      <div className="absolute bottom-8 left-8 w-16 h-16 border-l-2 border-b-2 border-polkadot-pink/30" />
+      <div className="absolute bottom-8 right-8 w-16 h-16 border-r-2 border-b-2 border-polkadot-pink/30" />
     </section>
   );
 }

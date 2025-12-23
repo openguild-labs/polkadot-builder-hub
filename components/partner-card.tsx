@@ -7,7 +7,7 @@ export default function PartnerCard({ partner }: { partner: Partner }) {
     <a
       target="_blank"
       href={partner.url}
-      className="group flex flex-col items-center justify-center gap-3 p-6 bg-white border-2 border-[#1a1a1a]/20 transition-all duration-300 hover:border-[#E6007A] hover:shadow-[4px_4px_0_0_#E6007A]"
+      className="group flex flex-col items-center justify-center gap-3 p-6 bg-white border-2 border-[#1a1a1a]/20 transition-all duration-300 hover:border-polkadot-pink hover:shadow-[4px_4px_0_0_#E6007A]"
     >
       <div className="relative w-24 h-24 flex items-center justify-center">
         <Image

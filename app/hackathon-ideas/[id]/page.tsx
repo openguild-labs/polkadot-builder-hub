@@ -16,7 +16,7 @@ import {
   BarChart3,
   Sparkles,
 } from "lucide-react";
-import { getIdeaById, hackathonTracks } from "@/components/mocks/hackathon-ideas";
+import { getIdeaById } from "@/components/mocks/hackathon-ideas";
 
 const difficultyColors = {
   Beginner: "bg-green-500/20 text-green-600 border-green-500/30",
@@ -25,9 +25,12 @@ const difficultyColors = {
 };
 
 const difficultyDescriptions = {
-  Beginner: "Suitable for developers new to Web3. Focus on core functionality with simpler integrations.",
-  Intermediate: "Requires solid understanding of blockchain concepts. Involves multiple integrations and moderate complexity.",
-  Advanced: "For experienced Web3 developers. Complex architecture, security considerations, and advanced protocols.",
+  Beginner:
+    "Suitable for developers new to Web3. Focus on core functionality with simpler integrations.",
+  Intermediate:
+    "Requires solid understanding of blockchain concepts. Involves multiple integrations and moderate complexity.",
+  Advanced:
+    "For experienced Web3 developers. Complex architecture, security considerations, and advanced protocols.",
 };
 
 interface PageProps {
@@ -64,7 +67,7 @@ export default function IdeaDetailPage({ params }: PageProps) {
         <div className="relative max-w-4xl mx-auto px-4">
           <Link
             href="/hackathon-ideas"
-            className="inline-flex items-center gap-2 text-[#1a1a1a]/60 hover:text-[#E6007A] mb-8 transition-colors"
+            className="inline-flex items-center gap-2 text-[#1a1a1a]/60 hover:text-polkadot-pink mb-8 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             <span className="font-display text-sm">Back to Ideas</span>
@@ -92,7 +95,9 @@ export default function IdeaDetailPage({ params }: PageProps) {
           {/* Meta info */}
           <div className="flex flex-wrap items-center gap-4 mb-6">
             <span
-              className={`px-3 py-1 text-sm font-display border ${difficultyColors[idea.difficulty]}`}
+              className={`px-3 py-1 text-sm font-display border ${
+                difficultyColors[idea.difficulty]
+              }`}
             >
               {idea.difficulty}
             </span>
@@ -159,7 +164,9 @@ export default function IdeaDetailPage({ params }: PageProps) {
               Problem Statement
             </h2>
           </div>
-          <p className="text-[#1a1a1a]/70 leading-relaxed">{prd.problemStatement}</p>
+          <p className="text-[#1a1a1a]/70 leading-relaxed">
+            {prd.problemStatement}
+          </p>
         </section>
 
         {/* Proposed Solution */}
@@ -175,7 +182,9 @@ export default function IdeaDetailPage({ params }: PageProps) {
               Proposed Solution
             </h2>
           </div>
-          <p className="text-[#1a1a1a]/70 leading-relaxed">{prd.proposedSolution}</p>
+          <p className="text-[#1a1a1a]/70 leading-relaxed">
+            {prd.proposedSolution}
+          </p>
         </section>
 
         {/* Key Features */}
@@ -185,7 +194,10 @@ export default function IdeaDetailPage({ params }: PageProps) {
               className="w-10 h-10 flex items-center justify-center"
               style={{ backgroundColor: `${track.color}15` }}
             >
-              <CheckCircle2 className="w-5 h-5" style={{ color: track.color }} />
+              <CheckCircle2
+                className="w-5 h-5"
+                style={{ color: track.color }}
+              />
             </div>
             <h2 className="font-display font-bold text-xl text-[#1a1a1a]">
               Key Features
@@ -196,7 +208,10 @@ export default function IdeaDetailPage({ params }: PageProps) {
               <li key={index} className="flex items-start gap-3">
                 <span
                   className="w-6 h-6 flex items-center justify-center text-xs font-display shrink-0 mt-0.5"
-                  style={{ backgroundColor: `${track.color}15`, color: track.color }}
+                  style={{
+                    backgroundColor: `${track.color}15`,
+                    color: track.color,
+                  }}
                 >
                   {index + 1}
                 </span>
@@ -222,8 +237,11 @@ export default function IdeaDetailPage({ params }: PageProps) {
           <div className="bg-[#1a1a1a]/5 p-6">
             <ul className="space-y-2">
               {prd.technicalRequirements.map((req, index) => (
-                <li key={index} className="flex items-start gap-2 text-[#1a1a1a]/70">
-                  <span className="text-[#E6007A]">•</span>
+                <li
+                  key={index}
+                  className="flex items-start gap-2 text-[#1a1a1a]/70"
+                >
+                  <span className="text-polkadot-pink">•</span>
                   <span>{req}</span>
                 </li>
               ))}
@@ -251,7 +269,9 @@ export default function IdeaDetailPage({ params }: PageProps) {
                 className="p-4 border-l-4 bg-[#fafafa]"
                 style={{ borderColor: track.color }}
               >
-                <p className="text-[#1a1a1a]/70 italic">&ldquo;{story}&rdquo;</p>
+                <p className="text-[#1a1a1a]/70 italic">
+                  &ldquo;{story}&rdquo;
+                </p>
               </div>
             ))}
           </div>
@@ -272,10 +292,7 @@ export default function IdeaDetailPage({ params }: PageProps) {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {prd.successMetrics.map((metric, index) => (
-              <div
-                key={index}
-                className="p-4 border-2 border-[#1a1a1a]/10"
-              >
+              <div key={index} className="p-4 border-2 border-[#1a1a1a]/10">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-green-500" />
                   <span className="text-[#1a1a1a]/70">{metric}</span>
@@ -297,7 +314,10 @@ export default function IdeaDetailPage({ params }: PageProps) {
           </div>
           <ul className="space-y-2">
             {prd.outOfScope.map((item, index) => (
-              <li key={index} className="flex items-start gap-2 text-[#1a1a1a]/60">
+              <li
+                key={index}
+                className="flex items-start gap-2 text-[#1a1a1a]/60"
+              >
                 <XCircle className="w-4 h-4 text-red-400 shrink-0 mt-1" />
                 <span>{item}</span>
               </li>
@@ -342,8 +362,8 @@ export default function IdeaDetailPage({ params }: PageProps) {
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 p-3 bg-[#1a1a1a]/5 hover:bg-[#1a1a1a]/10 transition-colors group"
                 >
-                  <ExternalLink className="w-4 h-4 text-[#E6007A]" />
-                  <span className="text-[#1a1a1a]/70 group-hover:text-[#E6007A] transition-colors">
+                  <ExternalLink className="w-4 h-4 text-polkadot-pink" />
+                  <span className="text-[#1a1a1a]/70 group-hover:text-polkadot-pink transition-colors">
                     {description || url}
                   </span>
                 </a>
@@ -354,31 +374,37 @@ export default function IdeaDetailPage({ params }: PageProps) {
 
         {/* Prize Info */}
         <section className="mb-12">
-          <div
-            className="p-6"
-            style={{ backgroundColor: `${track.color}10` }}
-          >
+          <div className="p-6" style={{ backgroundColor: `${track.color}10` }}>
             <h3 className="font-display font-bold text-lg text-[#1a1a1a] mb-4">
               {track.name} Track Prizes
             </h3>
             <div className="grid grid-cols-3 gap-4">
               <div className="text-center">
                 <div className="text-2xl mb-1">🥇</div>
-                <div className="font-display font-bold text-xl" style={{ color: track.color }}>
+                <div
+                  className="font-display font-bold text-xl"
+                  style={{ color: track.color }}
+                >
                   {track.prizes.first}
                 </div>
                 <div className="text-[#1a1a1a]/50 text-sm">1st Place</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl mb-1">🥈</div>
-                <div className="font-display font-bold text-xl" style={{ color: track.color }}>
+                <div
+                  className="font-display font-bold text-xl"
+                  style={{ color: track.color }}
+                >
                   {track.prizes.second}
                 </div>
                 <div className="text-[#1a1a1a]/50 text-sm">2nd Place</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl mb-1">🥉</div>
-                <div className="font-display font-bold text-xl" style={{ color: track.color }}>
+                <div
+                  className="font-display font-bold text-xl"
+                  style={{ color: track.color }}
+                >
                   {track.prizes.third}
                 </div>
                 <div className="text-[#1a1a1a]/50 text-sm">3rd Place</div>
@@ -395,8 +421,8 @@ export default function IdeaDetailPage({ params }: PageProps) {
             Ready to Build This?
           </h2>
           <p className="text-[#1a1a1a]/60 mb-8">
-            Register for the Polkadot Hub Hackathon and start building. Get access to
-            mentors, resources, and a community of builders.
+            Register for the Polkadot Hub Hackathon and start building. Get
+            access to mentors, resources, and a community of builders.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
@@ -409,7 +435,7 @@ export default function IdeaDetailPage({ params }: PageProps) {
             </Link>
             <Link
               href="/hackathon-ideas"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-[#1a1a1a]/20 hover:border-[#E6007A] text-[#1a1a1a] hover:text-[#E6007A] font-display text-sm tracking-wider transition-all"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-[#1a1a1a]/20 hover:border-polkadot-pink text-[#1a1a1a] hover:text-polkadot-pink font-display text-sm tracking-wider transition-all"
             >
               Browse More Ideas
             </Link>
@@ -419,4 +445,3 @@ export default function IdeaDetailPage({ params }: PageProps) {
     </main>
   );
 }
-

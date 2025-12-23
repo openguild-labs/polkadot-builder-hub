@@ -26,10 +26,10 @@ function IdeaCard({
   return (
     <Link
       href={`/hackathon-ideas/${idea.id}`}
-      className="group block p-6 bg-white border-2 border-[#1a1a1a]/10 hover:border-[#E6007A]/30 transition-all duration-300 hover:shadow-lg"
+      className="group block p-6 bg-white border-2 border-[#1a1a1a]/10 hover:border-polkadot-pink/30 transition-all duration-300 hover:shadow-lg"
     >
       <div className="flex items-start justify-between gap-4 mb-3">
-        <h3 className="font-display font-bold text-lg text-[#1a1a1a] group-hover:text-[#E6007A] transition-colors">
+        <h3 className="font-display font-bold text-lg text-[#1a1a1a] group-hover:text-polkadot-pink transition-colors">
           {idea.title}
         </h3>
         <span
@@ -64,7 +64,7 @@ function IdeaCard({
           <span>{track.icon}</span>
           <span className="font-display">{track.shortName}</span>
         </div>
-        <span className="text-xs text-[#E6007A] opacity-0 group-hover:opacity-100 transition-opacity font-display">
+        <span className="text-xs text-polkadot-pink opacity-0 group-hover:opacity-100 transition-opacity font-display">
           View Details →
         </span>
       </div>
@@ -173,7 +173,7 @@ function IdeasContent() {
                 placeholder="Search ideas..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full md:w-64 pl-10 pr-4 py-2 bg-[#1a1a1a]/5 border-2 border-transparent focus:border-[#E6007A] outline-none font-display text-sm"
+                className="w-full md:w-64 pl-10 pr-4 py-2 bg-[#1a1a1a]/5 border-2 border-transparent focus:border-polkadot-pink outline-none font-display text-sm"
               />
             </div>
           </div>
@@ -333,7 +333,7 @@ export default function HackathonIdeasPage() {
             <Link
               href="https://codecamp.openguild.wtf"
               target="_blank"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-[#1a1a1a]/20 hover:border-[#E6007A] text-[#1a1a1a] hover:text-polkadot-pink font-display text-sm tracking-wider transition-all"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-[#1a1a1a]/20 hover:border-polkadot-pink text-[#1a1a1a] hover:text-polkadot-pink font-display text-sm tracking-wider transition-all"
             >
               Learn at CodeCamp
             </Link>

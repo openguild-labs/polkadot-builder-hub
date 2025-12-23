@@ -25,12 +25,12 @@ export default function ResourcesSection() {
           {/* Main Grant Card */}
           <Link
             href="/grants"
-            className="group relative bg-gradient-to-br from-[#E6007A]/10 to-transparent border-2 border-[#E6007A] p-8 transition-all duration-300 hover:shadow-[4px_4px_0_0_#E6007A]"
+            className="group relative bg-gradient-to-br from-[#E6007A]/10 to-transparent border-2 border-polkadot-pink p-8 transition-all duration-300 hover:shadow-[4px_4px_0_0_#E6007A]"
           >
             <div className="flex flex-col h-full justify-between min-h-[280px]">
               <div className="flex flex-col gap-4">
                 <div className="flex items-center justify-between">
-                  <div className="p-3 bg-[#E6007A]/10 border-2 border-[#E6007A]">
+                  <div className="p-3 bg-[#E6007A]/10 border-2 border-polkadot-pink">
                     <Coins className="w-6 h-6 text-polkadot-pink" />
                   </div>
                   <ArrowRight className="w-6 h-6 text-polkadot-pink group-hover:translate-x-2 transition-transform" />
@@ -60,7 +60,7 @@ export default function ResourcesSection() {
             {/* Past Hackathon Winners */}
             <Link
               href="/past-hackathon-winners"
-              className="group flex items-center justify-between bg-white border-2 border-[#1a1a1a] p-6 transition-all duration-300 hover:border-[#E6007A] hover:shadow-[4px_4px_0_0_#E6007A]"
+              className="group flex items-center justify-between bg-white border-2 border-[#1a1a1a] p-6 transition-all duration-300 hover:border-polkadot-pink hover:shadow-[4px_4px_0_0_#E6007A]"
             >
               <div className="flex items-center gap-6">
                 <div className="relative w-16 h-16">

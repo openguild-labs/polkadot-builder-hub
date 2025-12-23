@@ -117,7 +117,7 @@ export default function FAQ() {
             <AccordionItem
               key={item.value}
               value={item.value}
-              className="bg-white border-2 border-[#1a1a1a]/20 px-6 data-[state=open]:border-[#E6007A] data-[state=open]:shadow-[4px_4px_0_0_#E6007A] transition-all"
+              className="bg-white border-2 border-[#1a1a1a]/20 px-6 data-[state=open]:border-polkadot-pink data-[state=open]:shadow-[4px_4px_0_0_#E6007A] transition-all"
             >
               <AccordionTrigger className="hover:no-underline py-6">
                 <div className="flex items-center gap-4 text-left">

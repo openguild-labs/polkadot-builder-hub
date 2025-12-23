@@ -43,9 +43,9 @@ export default function HackathonSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#E6007A]/10 border border-[#E6007A]/30 mb-6">
-            <Sparkles className="w-4 h-4 text-[#E6007A]" />
-            <span className="font-display text-xs text-[#E6007A] tracking-widest">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#E6007A]/10 border border-polkadot-pink/30 mb-6">
+            <Sparkles className="w-4 h-4 text-polkadot-pink" />
+            <span className="font-display text-xs text-polkadot-pink tracking-widest">
               HACKATHON 2026
             </span>
           </div>
@@ -66,11 +66,11 @@ export default function HackathonSection() {
         </div>
 
         {/* Prize Pool Banner */}
-        <div className="relative mb-16 p-8 border-2 border-[#E6007A]/20 bg-gradient-to-r from-[#E6007A]/5 via-white to-[#552BBF]/5">
+        <div className="relative mb-16 p-8 border-2 border-polkadot-pink/20 bg-gradient-to-r from-[#E6007A]/5 via-white to-[#552BBF]/5">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-4">
-              <div className="w-16 h-16 flex items-center justify-center bg-[#E6007A]/10 border border-[#E6007A]/30">
-                <Trophy className="w-8 h-8 text-[#E6007A]" />
+              <div className="w-16 h-16 flex items-center justify-center bg-[#E6007A]/10 border border-polkadot-pink/30">
+                <Trophy className="w-8 h-8 text-polkadot-pink" />
               </div>
               <div>
                 <p className="text-[#1a1a1a]/60 text-sm font-display tracking-wider">
@@ -102,7 +102,7 @@ export default function HackathonSection() {
             {hackathonTracks.map((track) => (
               <div
                 key={track.id}
-                className="group relative p-6 bg-white border-2 border-[#1a1a1a]/10 hover:border-[#E6007A]/50 transition-all duration-300 shadow-sm"
+                className="group relative p-6 bg-white border-2 border-[#1a1a1a]/10 hover:border-polkadot-pink/50 transition-all duration-300 shadow-sm"
               >
                 {/* Track number */}
                 <div
@@ -211,11 +211,12 @@ export default function HackathonSection() {
         {/* CTA */}
         <div className="text-center">
           <p className="text-[#1a1a1a]/60 mb-6">
-            Made possible by <span className="text-[#E6007A]">OpenGuild</span>
+            Made possible by{" "}
+            <span className="text-polkadot-pink">OpenGuild</span>
             {" | "}
-            <span className="text-[#E6007A]">Web3 Foundation</span>
+            <span className="text-polkadot-pink">Web3 Foundation</span>
             {" | "}
-            <span className="text-[#E6007A]">Polkadot</span>
+            <span className="text-polkadot-pink">Polkadot</span>
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -230,7 +231,7 @@ export default function HackathonSection() {
             <Link
               href="https://codecamp.openguild.wtf"
               target="_blank"
-              className="group flex items-center gap-2 px-8 py-4 border-2 border-[#1a1a1a]/20 hover:border-[#E6007A] text-[#1a1a1a] hover:text-[#E6007A] font-display text-sm tracking-wider transition-all"
+              className="group flex items-center gap-2 px-8 py-4 border-2 border-[#1a1a1a]/20 hover:border-polkadot-pink text-[#1a1a1a] hover:text-polkadot-pink font-display text-sm tracking-wider transition-all"
             >
               Learn at CodeCamp
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
