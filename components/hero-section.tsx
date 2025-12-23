@@ -46,7 +46,7 @@ export default function HeroSection() {
             BUILDERS HUB
           </h1>
           {/* Glow effect behind text */}
-          <div className="absolute inset-0 font-display font-bold text-6xl md:text-8xl lg:text-[10rem] text-[#E6007A] tracking-tight leading-none blur-3xl opacity-20 -z-10">
+          <div className="absolute inset-0 font-display font-bold text-6xl md:text-8xl lg:text-[10rem] text-polkadot-pink tracking-tight leading-none blur-3xl opacity-20 -z-10">
             BUILDERS HUB
           </div>
         </div>
@@ -76,7 +76,7 @@ export default function HeroSection() {
           </Link>
           <Link
             href="/hackathon-resources"
-            className="group flex items-center gap-3 px-10 py-4 border-2 border-[#1a1a1a] hover:border-[#E6007A] text-[#1a1a1a] hover:text-[#E6007A] font-display text-sm tracking-wider transition-all duration-200"
+            className="group flex items-center gap-3 px-10 py-4 border-2 border-[#1a1a1a] hover:border-[#E6007A] text-[#1a1a1a] hover:text-polkadot-pink font-display text-sm tracking-wider transition-all duration-200"
           >
             <span>View Resources</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

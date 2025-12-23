@@ -13,15 +13,31 @@ export default function Footer() {
   ];
 
   const resourceLinks = [
-    { href: "https://docs.polkadot.com/", label: "Documentation", external: true },
-    { href: "https://wiki.polkadot.network/", label: "Polkadot Wiki", external: true },
-    { href: "https://polkadot.com/platform/hub/", label: "Polkadot Hub", external: true },
+    {
+      href: "https://docs.polkadot.com/",
+      label: "Documentation",
+      external: true,
+    },
+    {
+      href: "https://wiki.polkadot.network/",
+      label: "Polkadot Wiki",
+      external: true,
+    },
+    {
+      href: "https://polkadot.com/platform/hub/",
+      label: "Polkadot Hub",
+      external: true,
+    },
     { href: "https://substrate.io/", label: "Substrate", external: true },
   ];
 
   const socialLinks = [
     { href: "https://x.com/openguildwtf", icon: Twitter, label: "Twitter" },
-    { href: "https://discord.com/invite/YxwPSUer5Z", icon: MessageCircle, label: "Discord" },
+    {
+      href: "https://discord.com/invite/YxwPSUer5Z",
+      icon: MessageCircle,
+      label: "Discord",
+    },
     { href: "https://github.com/AcalaNetwork", icon: Github, label: "GitHub" },
   ];
 
@@ -43,7 +59,8 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-[#1a1a1a]/50 text-sm leading-relaxed">
-              A community-driven resource hub for builders creating the next generation of Web3 applications on Polkadot.
+              A community-driven resource hub for builders creating the next
+              generation of Web3 applications on Polkadot.
             </p>
             <div className="flex items-center gap-4">
               {socialLinks.map((social) => (
@@ -52,7 +69,7 @@ export default function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 border-2 border-[#1a1a1a]/20 text-[#1a1a1a]/50 hover:text-[#E6007A] hover:border-[#E6007A] transition-colors"
+                  className="p-2 border-2 border-[#1a1a1a]/20 text-[#1a1a1a]/50 hover:text-polkadot-pink hover:border-[#E6007A] transition-colors"
                   aria-label={social.label}
                 >
                   <social.icon className="w-4 h-4" />
@@ -63,7 +80,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div className="flex flex-col gap-4">
-            <h3 className="font-display text-sm text-[#E6007A] tracking-wider">
+            <h3 className="font-display text-sm text-polkadot-pink tracking-wider">
               QUICK LINKS
             </h3>
             <nav className="flex flex-col gap-3">
@@ -71,7 +88,7 @@ export default function Footer() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-[#1a1a1a]/50 text-sm hover:text-[#E6007A] transition-colors"
+                  className="text-[#1a1a1a]/50 text-sm hover:text-polkadot-pink transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -81,7 +98,7 @@ export default function Footer() {
 
           {/* Resources */}
           <div className="flex flex-col gap-4">
-            <h3 className="font-display text-sm text-[#E6007A] tracking-wider">
+            <h3 className="font-display text-sm text-polkadot-pink tracking-wider">
               RESOURCES
             </h3>
             <nav className="flex flex-col gap-3">
@@ -91,7 +108,7 @@ export default function Footer() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#1a1a1a]/50 text-sm hover:text-[#E6007A] transition-colors"
+                  className="text-[#1a1a1a]/50 text-sm hover:text-polkadot-pink transition-colors"
                 >
                   {link.label}
                 </a>
@@ -101,12 +118,12 @@ export default function Footer() {
 
           {/* Powered By */}
           <div className="flex flex-col gap-4">
-            <h3 className="font-display text-sm text-[#E6007A] tracking-wider">
+            <h3 className="font-display text-sm text-polkadot-pink tracking-wider">
               POWERED BY
             </h3>
             <div className="flex flex-col gap-4">
-              <a 
-                href="https://openguild.wtf" 
+              <a
+                href="https://openguild.wtf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 group"
@@ -122,8 +139,8 @@ export default function Footer() {
                   OpenGuild
                 </span>
               </a>
-              <a 
-                href="https://polkadot.network" 
+              <a
+                href="https://polkadot.network"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 group"
@@ -151,11 +168,17 @@ export default function Footer() {
             © {currentYear} POLKADOT BUILDERS. ALL RIGHTS RESERVED.
           </p>
           <div className="flex items-center gap-6">
-            <Link href="/submit-an-idea" className="text-[#1a1a1a]/30 text-xs hover:text-[#E6007A] transition-colors">
+            <Link
+              href="/submit-an-idea"
+              className="text-[#1a1a1a]/30 text-xs hover:text-polkadot-pink transition-colors"
+            >
               Submit Idea
             </Link>
             <span className="text-[#1a1a1a]/20">|</span>
-            <a href="mailto:contact@polkadotbuilders.com" className="text-[#1a1a1a]/30 text-xs hover:text-[#E6007A] transition-colors">
+            <a
+              href="mailto:contact@polkadotbuilders.com"
+              className="text-[#1a1a1a]/30 text-xs hover:text-polkadot-pink transition-colors"
+            >
               Contact
             </a>
           </div>

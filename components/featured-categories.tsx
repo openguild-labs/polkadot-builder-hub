@@ -18,7 +18,7 @@ export default function FeaturedCategories() {
       {/* Section Header */}
       <div className="max-w-6xl mx-auto mb-16">
         <div className="flex flex-col items-center gap-4">
-          <span className="font-display text-sm text-[#E6007A] tracking-[0.3em]">
+          <span className="font-display text-sm text-polkadot-pink tracking-[0.3em]">
             EXPLORE
           </span>
           <h2 className="font-display text-4xl md:text-5xl text-[#1a1a1a] text-center">
@@ -26,7 +26,8 @@ export default function FeaturedCategories() {
           </h2>
           <div className="h-1 w-24 bg-[#E6007A] mt-4"></div>
           <p className="text-[#1a1a1a]/50 text-center max-w-xl mt-4">
-            Browse through various categories to find ideas and projects that match your interests and expertise.
+            Browse through various categories to find ideas and projects that
+            match your interests and expertise.
           </p>
         </div>
       </div>

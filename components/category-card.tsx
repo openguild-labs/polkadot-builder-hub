@@ -11,19 +11,19 @@ export default function CategoryCard({ category }: { category: Category }) {
     >
       {/* Hover gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#E6007A]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-      
+
       <div className="relative z-10 p-6 flex flex-col gap-4 min-h-[220px]">
         {/* Header */}
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-[#E6007A]/10 border-2 border-[#E6007A]/30 group-hover:border-[#E6007A] transition-colors">
-              <category.icon className="w-5 h-5 text-[#E6007A]" />
+              <category.icon className="w-5 h-5 text-polkadot-pink" />
             </div>
             <h3 className="font-display text-base text-[#1a1a1a] tracking-wide uppercase">
               {category.name}
             </h3>
           </div>
-          <ArrowRight className="w-5 h-5 text-[#E6007A] group-hover:translate-x-1 transition-transform" />
+          <ArrowRight className="w-5 h-5 text-polkadot-pink group-hover:translate-x-1 transition-transform" />
         </div>
 
         {/* Description */}
@@ -55,7 +55,9 @@ export default function CategoryCard({ category }: { category: Category }) {
               </div>
             </div>
             <div className="flex flex-col">
-              <span className="text-xs text-[#1a1a1a]/40 font-display tracking-wider">FEATURING</span>
+              <span className="text-xs text-[#1a1a1a]/40 font-display tracking-wider">
+                FEATURING
+              </span>
               <span className="text-xs text-[#1a1a1a]/70">
                 {category.featuredProjects
                   .map((project) => project.builderName)

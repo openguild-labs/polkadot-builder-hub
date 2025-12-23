@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import * as AccordionPrimitive from "@radix-ui/react-accordion"
-import { Plus, X } from "lucide-react"
+import * as React from "react";
+import * as AccordionPrimitive from "@radix-ui/react-accordion";
+import { Plus, X } from "lucide-react";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 function Accordion({
   ...props
 }: React.ComponentProps<typeof AccordionPrimitive.Root>) {
-  return <AccordionPrimitive.Root data-slot="accordion" {...props} />
+  return <AccordionPrimitive.Root data-slot="accordion" {...props} />;
 }
 
 function AccordionItem({
@@ -22,7 +22,7 @@ function AccordionItem({
       className={cn("border-b-0", className)}
       {...props}
     />
-  )
+  );
 }
 
 function AccordionTrigger({
@@ -42,12 +42,12 @@ function AccordionTrigger({
       >
         {children}
         <div className="relative w-6 h-6 border-2 border-[#1a1a1a]/30 group-data-[state=open]:border-[#E6007A] group-data-[state=open]:bg-[#E6007A] transition-colors flex items-center justify-center">
-          <Plus className="w-4 h-4 text-[#E6007A] group-data-[state=open]:hidden" />
+          <Plus className="w-4 h-4 text-polkadot-pink group-data-[state=open]:hidden" />
           <X className="w-4 h-4 text-white hidden group-data-[state=open]:block" />
         </div>
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
-  )
+  );
 }
 
 function AccordionContent({
@@ -63,7 +63,7 @@ function AccordionContent({
     >
       <div className={cn("pt-0 pb-4", className)}>{children}</div>
     </AccordionPrimitive.Content>
-  )
+  );
 }
 
-export { Accordion, AccordionItem, AccordionTrigger, AccordionContent }
+export { Accordion, AccordionItem, AccordionTrigger, AccordionContent };

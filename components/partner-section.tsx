@@ -7,15 +7,16 @@ export default function PartnerSection() {
       {/* Section Header */}
       <div className="max-w-6xl mx-auto mb-16">
         <div className="flex flex-col items-center gap-4">
-          <span className="font-display text-sm text-[#E6007A] tracking-[0.3em]">
+          <span className="font-display text-sm text-polkadot-pink tracking-[0.3em]">
             ECOSYSTEM
           </span>
           <h2 className="font-display text-4xl md:text-5xl text-[#1a1a1a] text-center">
-            CONTRIBUTORS <span className="text-[#E6007A]">&</span> PARTNERS
+            CONTRIBUTORS <span className="text-polkadot-pink">&</span> PARTNERS
           </h2>
           <div className="h-1 w-24 bg-[#E6007A] mt-4"></div>
           <p className="text-[#1a1a1a]/50 text-center max-w-xl mt-4">
-            Building the future of Web3 together with amazing partners across the Polkadot ecosystem.
+            Building the future of Web3 together with amazing partners across
+            the Polkadot ecosystem.
           </p>
         </div>
       </div>
@@ -32,7 +33,13 @@ export default function PartnerSection() {
       {/* CTA */}
       <div className="max-w-6xl mx-auto mt-16 text-center">
         <p className="text-[#1a1a1a]/40 font-display text-sm tracking-wider">
-          WANT TO BECOME A PARTNER? <a href="mailto:contact@polkadotbuilders.com" className="text-[#E6007A] hover:text-[#FF2670] transition-colors">CONTACT US</a>
+          WANT TO BECOME A PARTNER?{" "}
+          <a
+            href="mailto:contact@polkadotbuilders.com"
+            className="text-polkadot-pink hover:text-[#FF2670] transition-colors"
+          >
+            CONTACT US
+          </a>
         </p>
       </div>
     </section>

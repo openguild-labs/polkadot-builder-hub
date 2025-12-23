@@ -24,7 +24,7 @@ export default function Header() {
             <div className="w-3 h-3 bg-[#E6007A]"></div>
             <div className="w-3 h-3 bg-[#00B2FF]"></div>
           </div>
-          <span className="font-display text-[#1a1a1a] text-sm md:text-base tracking-wider group-hover:text-[#E6007A] transition-colors">
+          <span className="font-display text-[#1a1a1a] text-sm md:text-base tracking-wider group-hover:text-polkadot-pink transition-colors">
             POLKADOT BUILDERS
           </span>
         </Link>
@@ -35,7 +35,7 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="font-display text-sm text-[#1a1a1a]/70 hover:text-[#E6007A] transition-colors tracking-wider"
+              className="font-display text-sm text-[#1a1a1a]/70 hover:text-polkadot-pink transition-colors tracking-wider"
             >
               {link.label}
             </Link>
@@ -76,7 +76,7 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="font-display text-sm text-[#1a1a1a]/70 hover:text-[#E6007A] transition-colors tracking-wider py-2"
+                className="font-display text-sm text-[#1a1a1a]/70 hover:text-polkadot-pink transition-colors tracking-wider py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {link.label}

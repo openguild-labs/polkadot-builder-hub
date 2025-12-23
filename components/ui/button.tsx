@@ -1,25 +1,22 @@
-import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
-import { cva, type VariantProps } from "class-variance-authority"
+import * as React from "react";
+import { Slot } from "@radix-ui/react-slot";
+import { cva, type VariantProps } from "class-variance-authority";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:ring-[#E6007A]/50 focus-visible:ring-2",
   {
     variants: {
       variant: {
-        default:
-          "bg-[#E6007A] text-white hover:bg-[#FF2670]",
-        destructive:
-          "bg-[#FF4444] text-white hover:bg-[#FF6666]",
+        default: "bg-[#E6007A] text-white hover:bg-[#FF2670]",
+        destructive: "bg-[#FF4444] text-white hover:bg-[#FF6666]",
         outline:
-          "border-2 border-[#1a1a1a] bg-transparent text-[#1a1a1a] hover:bg-[#1a1a1a]/5 hover:border-[#E6007A] hover:text-[#E6007A]",
+          "border-2 border-[#1a1a1a] bg-transparent text-[#1a1a1a] hover:bg-[#1a1a1a]/5 hover:border-[#E6007A] hover:text-polkadot-pink",
         secondary:
-          "bg-[#f5f5f5] text-[#1a1a1a] border-2 border-[#1a1a1a]/20 hover:border-[#E6007A] hover:text-[#E6007A]",
-        ghost:
-          "text-[#1a1a1a] hover:bg-[#E6007A]/10 hover:text-[#E6007A]",
-        link: "text-[#E6007A] underline-offset-4 hover:underline hover:text-[#FF2670]",
+          "bg-[#f5f5f5] text-[#1a1a1a] border-2 border-[#1a1a1a]/20 hover:border-[#E6007A] hover:text-polkadot-pink",
+        ghost: "text-[#1a1a1a] hover:bg-[#E6007A]/10 hover:text-polkadot-pink",
+        link: "text-polkadot-pink underline-offset-4 hover:underline hover:text-[#FF2670]",
       },
       size: {
         default: "h-10 px-5 py-2",
@@ -33,7 +30,7 @@ const buttonVariants = cva(
       size: "default",
     },
   }
-)
+);
 
 function Button({
   className,
@@ -43,9 +40,9 @@ function Button({
   ...props
 }: React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
-    asChild?: boolean
+    asChild?: boolean;
   }) {
-  const Comp = asChild ? Slot : "button"
+  const Comp = asChild ? Slot : "button";
 
   return (
     <Comp
@@ -53,7 +50,7 @@ function Button({
       className={cn(buttonVariants({ variant, size, className }))}
       {...props}
     />
-  )
+  );
 }
 
-export { Button, buttonVariants }
+export { Button, buttonVariants };

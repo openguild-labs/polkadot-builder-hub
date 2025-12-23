@@ -8,12 +8,12 @@ export default function ResourcesSection() {
       {/* Section Header */}
       <div className="max-w-6xl mx-auto mb-16">
         <div className="flex flex-col items-center gap-4">
-          <span className="font-display text-sm text-[#E6007A] tracking-[0.3em]">
+          <span className="font-display text-sm text-polkadot-pink tracking-[0.3em]">
             GET STARTED
           </span>
           <h2 className="font-display text-4xl md:text-5xl text-[#1a1a1a] text-center">
-            WELCOME ABOARD<span className="text-[#E6007A]">,</span> BUILDERS
-            <span className="text-[#E6007A]">!</span>
+            WELCOME ABOARD<span className="text-polkadot-pink">,</span> BUILDERS
+            <span className="text-polkadot-pink">!</span>
           </h2>
           <div className="h-1 w-24 bg-[#E6007A] mt-4"></div>
         </div>
@@ -31,13 +31,13 @@ export default function ResourcesSection() {
               <div className="flex flex-col gap-4">
                 <div className="flex items-center justify-between">
                   <div className="p-3 bg-[#E6007A]/10 border-2 border-[#E6007A]">
-                    <Coins className="w-6 h-6 text-[#E6007A]" />
+                    <Coins className="w-6 h-6 text-polkadot-pink" />
                   </div>
-                  <ArrowRight className="w-6 h-6 text-[#E6007A] group-hover:translate-x-2 transition-transform" />
+                  <ArrowRight className="w-6 h-6 text-polkadot-pink group-hover:translate-x-2 transition-transform" />
                 </div>
                 <h3 className="font-display text-xl md:text-2xl text-[#1a1a1a] tracking-wide">
                   GET GRANTS TO GROW YOUR IDEAS
-                  <span className="text-[#E6007A]">!</span>
+                  <span className="text-polkadot-pink">!</span>
                 </h3>
                 <p className="text-[#1a1a1a]/60 text-sm leading-relaxed">
                   Access funding opportunities from the Polkadot ecosystem to
@@ -80,7 +80,7 @@ export default function ResourcesSection() {
                   </p>
                 </div>
               </div>
-              <ArrowRight className="w-5 h-5 text-[#E6007A] group-hover:translate-x-2 transition-transform" />
+              <ArrowRight className="w-5 h-5 text-polkadot-pink group-hover:translate-x-2 transition-transform" />
             </Link>
 
             {/* Join Communities */}
